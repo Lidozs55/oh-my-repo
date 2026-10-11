@@ -1,0 +1,987 @@
+# 知识点提取 02：社区讨论串 + 种子链接（阶段2 · 只罗列不整合）
+
+- 提取日期: 2026-10-11；提取人: 阶段2 知识点提取
+- 覆盖: `research/raw/discussions/` 全部 20 个文件 + `research/raw/initial-links/` 全部 6 个文件
+- 原则: 每文件一节、逐条罗列、立场分开标注、高赞/reaction 标数（raw 中未记录赞数的标注「无赞数记录」）；英文转述为中文、专有名词保留
+- 对照骨架: `research/notes/community-voices.md`、`research/notes/seed-links.md`（本文件已回读 raw 原文补齐摘要遗漏项）
+
+---
+
+## hn-cult-of-vibe-coding.md（The cult of vibe coding is dogfooding run amok，HN 616 分 182+ 评）
+
+- 【原文立场·Bram Cohen（BitTorrent 作者）】vibe coding 邪教 = dogfooding 失控：不在代码现场迭代的人，无法回答后续问题；他主张人留在环里，通过对话审计代码（"This function makes my eyes bleed"式起点）直到产出可行动方案
+- 【原文】作者自述工作方式：以"让我们审计这个代码库里的不可达代码"开启对话 → 讨论出 actionable 的事 → 解释他认为该怎么做 → 反复讨论直到"我不再有新想法、机器不再说蠢话"
+- 【原文】"纯 vibe coding 是神话，但他们仍在尝试，导致荒谬结果"——指向 Claude Code 泄漏源码质量争议
+- @reconnecting（前排#1）：作者这类用户是 Claude 最有价值的资产——AI 本身不是产品，塑造输出的人的反馈才是
+- @infinitewars（前排#2）：AI 只是又一层抽象；汇编时代的人也抱怨过函数太抽象
+- @kmaitreys（反驳）：取代汇编的高级语言不是黑箱
+- @makerofthings（部分反驳）：编译是机械且被充分理解的过程；LLM 不是把英文"编译"成代码，它在猜你想要什么、加你没要的东西、替你做方案思考——不止是抽象
+- @jncfhnb：那是"工具实现的抽象"而非"输出的抽象"；产出你不懂的东西是新颖事物
+- @seattle_spring / @beart：高级语言抽象是确定性的，AI 非确定——非确定性层之上还能叫抽象吗
+- @mananaysiempre：根本上不可靠的抽象：即使实现完全正确，仍可能给出无人能解释的错误答案；自然语言不是可靠的 spec（尤其在新手手里）
+- @dominotw（前排#3）：几个月做出百万级开发者日用的产品与"荒谬"相反；若非源码泄漏根本没人知道代码烂
+- @scrame（前排#4）：提醒这是 BitTorrent 作者 Bram Cohen，不是随便一个博主
+- @hungryhobbit（反驳作者）：以他的背景，更该为立场提供证据而非完全无支撑的 rant
+- @rib3ye：翻旧账：怎么不谈谈他的加密货币项目
+- @saulpw（前排#5）：引入 visidata.org/ai 的 AI Level 分级（Level 0-7）：Claude Code 产自 Level 7（人写 spec、bot 写码），作者主张 Level 6（bot 写码、人部分理解）结果显著更好；社区分歧巨大——有人主张上限 Level 5（bot 写码、人完全理解），有人认为超过 Level 2（人写码+少量辅助）就脱离地面
+- @sbysb：分级框架损失粒度，实际使用中存在大量 nuance
+- @rapind（自述数据点）：自己稳在 Level 5，前提是"大量 guardrails + 类型化无 null 的函数式语言 + TDD red/green + 可观的 spec 时间"；动态语言下不敢到这个级别
+- @rectang：Level 5 舒适；完全理解接口且能测试但不全懂实现时可偶尔上 Level 6
+- @forrestthewoods：不相信 Level 7 对多数项目存在——非平凡程序的 spec 必须深含实现细节、架构与关键数据结构，否则做不到
+- @freediddy：未来进步最快的是把自己推向最高 level 的人；铁匠被工厂取代的历史类比；"现在有些 coder 不喜欢自己的生活方式已死这个事实"
+- @francisofascii（自曝）：工作 Level 4，side project 已"尴尬地"滑进 Level 6——接受现成功能而不理解的诱惑很大
+- @jaccola：级别是 context 相关的：做计算机视觉，外围 app/UI/结账流轻松 Level 6/7；渲染管线/算法/数学连 Level 2 都关掉——深度专注时它是干扰
+- @kfarr（质疑）：按这说法 Anthropic 员工也不理解 Claude Code 的代码？很难相信他们没有能看懂输出的人做 review
+- @lukev：整家公司/整个产品不该在同一 level 构建；用 AI 构建的艺术是"异构 vibe-coded app"——算法新颖处 Level 0（亲手写），外围高层级
+- @throwaway27448：不完全理解行为怎么写 spec？"human sketched"（人打草稿）的说法更准确
+- @amarant：文章读一半就得停——稻草人过敏（讽刺满篇 strawman）
+- @throw949449（前排#7）：读起来像不用版本控制、测试和 CI 的人的 rant；有编码标准和偏好就该蒸馏出来自动应用（像自动 linter）；建议：找喜欢的开源项目让 Claude review 并生成 code rule，再 overnight 跑自己代码库直到通过测试和新标准
+- @mech422（反驳上条）：他不是在给 spec，是在开启对话看是否有 actionable 的事——你引用了却没读懂
+- @_whiteCaps_：Bram Cohen 不只是用版本控制——他发明过一个（bramcohen.livejournal.com/17319.html）
+- @semicolon_storm（前排#8）：奇怪的是人们拿 Claude Code 泄漏源码质量当"vibe coding 不行"的证据；恰恰相反——它证明违反全部传统"好代码"规则也能造出爆款产品
+- @shimman（反驳）：再加上几百亿海湾资本的补贴，用不是自己的钱补贴愚蠢失败
+- @operatingthetan：我纳闷的是用同一产品怎么会产出这么烂的代码；也许问题是多个 vibe-coder 在大仓库上同步
+- @tedd4u：Claude Code 等在干净、结构良好的代码上会工作得更好（跟人类一样）——短期没事，长期仍是未解问题
+- @andrenotgiant："违反好代码规则也能成功"从来都成立
+- @kypro：Claude Code 基本只是 LLM 外面包个 CLI，不算大型软件项目
+- @noosphr：终端上用 Claude Code 没人说过好话；用得爽的是 VS Code 里用的人
+- @ozgrakkurt：短期猴子式写码不产生产品；类比土耳其无良建筑商——"一样盖楼一样卖价但花得更少"，地震时百万人受害
+- @bitwize：对客户的价值，字面意义上唯一重要的事
+- @hombre_fatal：很多抱怨读起来更像幸灾乐祸；如"负面情绪 regex"只用于日志/遥测指标，采样"wtf?"就够；vibe-coded app 逃不脱快速人写代码的同样 trade-off，何况还是有人在驾驶
+- @aleksandrm：谁知道泄漏的原代码是不是 vibe 写的？鸡生蛋问题
+- @acedTrex：它就是个多 bug 的破玩意；"流行且成功"从来不是任何意义上的质量指标
+- @bcrosby95：坏代码短期没事、长期爆炸；以人类经验，time horizon 数月时做对的事才值得，到年级别绝对要做对——指的是 at-change-time 的"这改动感觉像脏 hack"时刻，不是大重构
+- @roughly（讽）：你也可以让潜艇违反全部"好"工程规则下潜到压碎深度
+- @slopinthebag：先拿到几千亿投资做出领先产品、再用庞大法务团队强制推行补贴订阅——这是"代码不重要"的绝佳证据吗
+- @steveBK123：年薪百万的 AI 工程师可没在 vibe code 模型本身——那才是真正的 sauce
+- @tombert：人们若看到日常产品背后手写代码会震惊；BigCo 和创业公司生产环境里大量可怕代码；deadline 一直存在
+- @thwarted：这早就知道；有人以为这是对好实践倡导者的 gotcha，其实只是暴露了自己
+- @AstroBen：99.999999% 的产品学不了 Anthropic——十亿分之一、几乎没有竞争的革命性产品；成功主要来自 Claude 模型而非 agent harness
+- @thesz：类比 Viaweb：同样骑 hype 浪潮、代码状况同样糟糕（PG 的客户复现场修 bug 故事）；Viaweb 的买家做的是用 C++ 重写——历史押韵的话，Anthropic 的买家也会"重写"
+- @conductr：语法警察人格——纠结"读起来丑"而看不到信息：这套代码驱动着 4000 亿美元公司；他们承认重构容易，但这可能就是还没成为优先级
+- @blks：这本质是把工作转嫁给未来的人；已经让开发者损失数月时间和数百美元 token（因一个 bug），还会有更多
+- @aenis：以 CTO 身份做 M&A：见过大量成功公司代码库，没有一个优雅——包括产品被热爱的高利润公司；好代码只在开源和 demoscene；商业代码大多是垃圾照样赚钱
+- @pron：三点框架：①vibe coding 是监督程度（+人写测试/spec 脚手架）的光谱；②"坏代码"的问题不在产品短期成功，在于能否随时间成功演进——长期而非短期问题；③（被截断）
+- @yakattak：这么强的工具其实挺 janky：权限不总生效、按 escape 不总响应、格式自己坏掉
+- @leptons：经常等了又等什么也不产出——"这正是我对 vibe-coded app 的预期"
+- @kristopolous：贬低工匠精神从根本上侮辱人
+- @quater321：40 年程序员：大多数公司 90% 的 coder 是 stackoverflow/google coder；诚实的 coder 都会承认；AI 已远胜那 90%
+- @themafia：模型才是产品——后端有感知价值，前端可以是垃圾；也意味着在体验上改进的竞争者会吃掉你
+- @is_true：LLM 公司有商业动机让代码难以维护——让你未来一直需要他们
+- @rafaelmn：以 Anthropic 的资源和资金，Claude Code 用起来惊人地差；看不到打磨/在乎的迹象，像内部 PoC 直接上了生产还继续糊
+- @tristramb：Facebook/Yahoo 等早期也这样，但代码大到不可维护时他们重写了；烂代码的问题不是不能用，是变得无法修改
+- @prmph：好代码是"能构建很复杂软件而不出不合理数量 bug"的前提，也是"响应客户需求变化"的前提；忽视它的公司倒闭的很多
+- @f-serif：Cloudflare 案例：public suffix list 在 10 个地方用 10 种方式实现，甚至嵌进前端；修一处其他服务自己都不知道还有别处
+- @somesortofthing："狂野成功但粗糙的首发产品被执行力更强的对手推翻"是科技界最古老的故事
+- @dheera：房东照常收租、IRS 照常开罚——为养活公司交付烂代码永远赢过代码质量，除非系统在财务上激励代码质量
+- @dijit：Twitch 泄漏源码当年同样开眼：没人在乎你的代码质量，只在乎你 ship 有趣功能的能力
+- @BearOso：它的运行成本高得惊人——loss-leader 期结束要赚钱时不是好兆头
+- @bccdee：coding agent 处理烂代码很挣扎——代码质量一如既往重要；AI 无约束地产出坏代码的速度前所未有，这正是好实践重要的原因
+- @dadrian：质量与可靠性问题持续存在，独立于服务端基础设施（长任务 OOM 等）
+- @awkward：代码质量是战术问题，产品生死在战略；除非你站在世代级泡沫的正确一边，否则不建议忽视战术
+- @pavel_lishin：多少美元修多少错误
+- @HarHarVeryFunny：产品革命性才让人容忍 bug——TUI 闪烁这种 bug 在普通产品上是 showstopper，在 CC 上持续了很久；几周前还有 5 个已知 bug
+- @cineticdaffodil：正处 hype 漩涡中心、市场物理被暂停；坏代码吃掉的服务器农场在泡沫通缩时要付双倍代价
+- @stefan_：我们用 Claude 是 despite Claude Code；ChudCorp 出个更好的模型我们瞬间全走——没有护城河
+- @CyberDildonics：流行的烂软件早就有：Facebook messenger、Instagram、Twitter、Minecraft、balena etcher、初版以太坊钱包、一切 Electron
+- @i_love_retros：你们都疯了（自嘲"还是我疯了"）：眼睁睁看着团队代码库每天变成不可维护噩梦；Copilot 和 Claude Code 的产出冗长荒谬复杂，经常整个扔掉，用萎缩的大脑想出少 80% 代码的正确解
+- @6thbit：Claude Code 的代码还太年轻，没遭遇真正的长期可维护性问题；人员流动也少
+- @mhh__：agentic coding 工具可能是同等流行度里最烂的代码；CC 能用是因为 Claude 好+网络效应
+- @neonstatic：OP 的主张不是"vibe coding 不行"而是"Anthropic 的做法不行"——具体批评 hands-off 代码的做法、主张人留在环里
+- @somekindaguy：传统好代码规则是对人类开发者的实用启发式；agentic 开发会涌现一套不同的启发式
+- @HerbManic：2000-2010s 游戏引擎合同工的标准就是"不该工作但能跑"；烂代码能跑且让人困惑是常态
+- @pizzly：对多数人真正重要的是能不能跑；怎么造的与他们无关也不该有关
+- @manquer：vibe coding 类似刷信用卡赌创业：幸存者故事（FedEx 最后 5000 美元）掩盖多数人破产；风险是在项目成功前积累过多技术债；PMF 很难
+- @Izkata：那串讨论的印象是质量在下降、怪 bug 冒出；而且记得他们宣布切换时是有人写代码库打底的——这反而是 vibe coding 长期不行的证据
+- @croes：Excel 宏方案遍地流行但宏很烂——坏代码不幸地能工作
+- @TacticalCoder：泄漏不是证明 vibe coding 不行的证据，是证明代码本身是 rube-goldberg 式垃圾的证据；世上 shitty 产品多的是（微软的重型垃圾也浮现心头）
+- @lmm：烂代码做出暂时能用的东西一直是可能的；问题是产品会随机回归（他们的产品就是！），严肃买家不会付钱
+- @socketcluster：怀疑整件事像鼓励开发者多耗 token 的营销活动；工程师经验（包括用 Claude Code 本身）：代码越多 bug 越多，迅速变成打地鼠——修 1 个冒 2 个
+- @pieterk：几周前停用 Claude Code，不怀念任何混乱；"把 Opus 4.5 带回来"
+- @bakugo：营销和 hype 比质量更重要的观点比我们都老——不等于你营销好的产品就是好产品
+- @21asdffdsa12：预期质量梯度：耗资源最多的 hot path 仍由人类以"只有人类代码+严格标准"维护，外围靠 AI
+- @benterix：这与非 vibe 公司"用 LLM 提升代码质量"的方向完全相反
+- @roland35：烂代码不一定是问题——烂架构和烂系统才咬人；坏代码若易重构就容易替换；（附带）我写过漂亮可靠的分布式 rust agent，公司不行了照样被裁
+- @JambalayaJimbo：Claude Code 提供对 Anthropic 模型的补贴访问——产品本身质量不重要；但不能由此外推"软件质量在所有场景都不重要"
+- @cagatayk：工具厂商的成本函数与用户完全不同：对 Claude Code 工程师 token 几乎免费；他们赌用更好的模型对抗 grotesquely large 代码库的复杂度——用直接赚钱的丑东西资助这场竞赛
+- @bearjaws（前排#9）：97% 的 web 应用就是带集成的 CRUD；99% 的公司永远不会有 5 万用户
+- @aerhardt（反驳）：企业内给 100 个用户分发应用已是地狱；确信 citizen developer 永远不会成真——我们更早到达奇点
+- @mattmanser（反驳）：企业层是相反问题——用户少但要大量 CPU/DB 密集处理快速完成；曾见烂工程师建的系统一天时间都不够跑完全部客户端任务
+- @somewhatjustin（前排#10）：Christensen 颠覆理论：在位企业完全理性地不屑低端新事物（Intel 错过移动）；新事物变够好就推翻旧的（Apple 桌面转 ARM）；Claude Code 已 good enough，除非 AI 停滞否则将超越手写
+- @codybontecou：即使 AI 停滞，围绕现有模型建工具和模式也能超越手写
+- @taurath：至少在我接触的圈子里叙事不是这样——叙事是"每天不用掉几百美元 token 就是不够高效"；高管在考虑取消 code review 和测试；从未见过如此盲目的乐观
+- @lmm（反驳颠覆论）：低端替代品大多死掉从未颠覆高端；现在产的是不可维护垃圾，能赚钱，但"对好代码的需求"没有消失
+- @aleph_minus_one（前排#11）：可以让 bot 分析代码找 spaghetti 部分并清理成杰作 :-)
+- @cladopa（前排#12）："Ladran, Sancho, señal que cabalgamos"（狗叫说明我们在骑马）；船已开走：vibe coding works，未来只会更好，尤其内行手里；本地化+100x 更快即将到来；管它呢，不会停的
+- @sunnybeetroot（反驳）：内行不 review 就不部署——那叫 vibe engineering 不是 vibe coding
+- @anthk（反驳）：猪涂口红还是猪；引堂吉诃德"我们撞上教会了"
+- @bs7280（前排#13）：两个主流阵营：不懂软件工程的非技术爱好者 vs 用过 ChatGPT 3.5 就断定 LLM 代码是垃圾的 hater；互联网上最响的是这两群；中间有一个安静但极高产的 camp——有乐观、开放加上多年工程经验，把 Claude Code 推到极限；vibe coding 与 agentic engineering 的区别就是"你是否知道代码在干什么"；用 Claude Code 开发复杂网站的风险与管理离岸开发团队相当；（截断）
+- @il-b（追问）：如何量化度量这个中间派的生产力提升？
+- @freediddy（前排#14，激进正方）：完全不同意全文；好坏代码不再相关——重要的是 AI 是否满足"应用该如何工作"的 contract；代码烂就重跑 prompt 下次更好；但更好也不重要因为人类不再读代码；1 月起没写过一行代码、只偶尔好奇瞟一眼；意大利面、复制粘贴都不重要，满足 contract 即可；有 bug（截断）
+- @sunnybeetroot（反驳上条）：完全取决于产品——个人博客不用读代码；银行架构改动不负责任到不去理解实际代码
+- @il-b（反驳上条）：有人 vibe 写了你车的刹车控制系统，测试通过了，你觉得够好吗
+- @zozbot234（反驳）：极其相关——垃圾代码污染 AI 的上下文、诱导它写更多垃圾；"香肠怎么做"仍然重要
+- @azov（反驳）：你的代码就是那个 contract——除非测试覆盖每一个可能输入（多数场景不实际）
+- @post-it（前排#15）：Bram 举的 agents/tools 合并例子难的不是分类——是有人用 tool 版、有人用 agent 版，随便合并哪边都会破坏某人的工作流，产生真实的排期成本——这就从"AI 任务"变回了"需要排优先级的 ticket"
+- @dogline（前排#16）：我们远没有 AGI——我们只是把知识库向量化再回放；是向量化知识库不是 AI
+- @mckn1ght：Tesler 定理：AI 就是还没做到的事
+- @therobots927：这个描述很准、它干这活很在行；但假装它能最少监督地用于全部或多数应用是疯了；科技话语从未如此低产——实时目睹行业内爆，VC 功不可没
+- @CrzyLngPwd（前排#17）：vibe coding 产品在功能上就是原型（prototyping）；过去（另一个国度）我们会把原型扔掉；现在 vibe coding 只是不停往上加
+- @hintymad（前排#19）：AI coding 正在挑战几条经验定律——Brooks《没有银弹》（十年内无单项技术带来 10 倍生产率；如今"build me XXX with YYY"就能出惊人结果，因为世界级专长被迁移过来，多数复杂性变偶然复杂性）与 Kernighan 定律（调试比写码难一倍；如今人们越来越相信 AI 调试远快于人，最坏情况让 AI 重写）
+- @furyofantares：我以为你要反着说——调试现在难 100 倍（截断）
+- @themafia：最坏情况重写 = 最坏情况付两次钱——死路
+- @Yokohiii：把开发产出当经济产出是简单化；开发者提速≠经济生产力；"debugging"在这些讨论里太模糊
+- @diarrhea：基本不同意：行业本来就不会度量生产力；AI 没有 increase reliability，反而为了 ship 功能在加荒谬的复杂度
+- @teaearlgraycold（前排#20）：人们拿到了打字更快、检索更强的东西，就决定质量不再重要——连代码都不是，是产品级质量明显低于标准
+- @hibikir（前排#24）：我最爱的用法：让 Claude Code 做人做会被视为浪费时间的质量改进——找单测/功能测试里的重复模式、统一 JSON 序列化写法、找过于复杂的函数与大块重复；产出的 PR 几乎无争议、缩小代码库、最终反而省 token（读的更少更无聊）；相当于更大规模的 linting；把模式写下来扔向不同仓库/monorepo 各段
+- @jkingsman（回复）：同感——多段 prompt 猎 subtle bug / 用户预期破坏 / cruft 重复 / 无用测试（六个测试其实是一个逻辑流；断言三元式还是三元式之类）/ 文档缺口；放 Opus、GPT5.4、Gemini 各写 hitlist 再汇总
+- 来源: research/raw/discussions/hn-cult-of-vibe-coding.md（https://news.ycombinator.com/item?id=47664912；原文 https://bramcohen.com/p/the-cult-of-vibe-coding-is-insane）
+
+## hn-vibe-vs-agentic-engineering.md（Vibe coding and agentic engineering are getting closer than I'd like，HN 787 分 253+ 评）
+
+- 【原文背景·Simon Willison】：vibe coding（不给生产代码做 review）与 agentic engineering（谨慎 review 每一行）的界线正在模糊；引 200 行/天→2000 行/天的产出变化对整个 SDLC 的冲击；"我能让 Claude Code 写个 JSON API endpoint 并保证它对，但我没 review 那代码——没 review 就上生产，负责任吗"的 guilt
+- @singpolyma3（前排#1）：我太有主见走不了那边——能跑但不是我风格的代码，不管人写的还是 LLM 写的，我都会进去改成我要的样子
+- @suzzer99（附和）：100%——没有 senior 程序员看过别人的代码会说"对，我就是会这么写"
+- @jstummbillig（反驳）：大多数组织不是这么运作的，有没有 AI 都一样
+- @rglover：关键是"你追求什么结果标准、是否自律到去达成"——AI 不能让你不懒，买多少 token 都不行
+- @QuantumNomad_（前排#3，悲观）：30 年后人们会纳闷我们在想什么——几十亿行无人读过的 LLM 代码、有或没有 LLM 都无法维护；LLM 垃圾会淹没互联网上所有好代码，让人想永远放弃编程
+- @ativzzz（反驳）：到时修起来容易——启动最新 LLM 指着代码库说"rewrite this from scratch. do it well. fix the architecture mistakes"
+- @jimmyjazz14：真到那地步市场力量会偏向手写代码，slop 被遗忘（除非 slop 又稳又能跑）
+- @jf22：第一，大多数软件本来就是 hot mess；第二，投入时间 train/prompt/verify/review 的 LLM 代码可以比人写的更干净——生成完美 SOLID+单测+无警告反模式的代码从未如此容易
+- @cj：LLM 不是第一个改变开发方式的东西——Django/Rails、SPA、JS 全栈都是；3-5 年内会像过去一样适应新常态
+- @johnbarron：同样可能未来的人惊讶我们曾有几十亿行人写代码而没有任何 LLM 批准过（视角反转）；作为肉体，期待 1 万美元/小时修 vibe 代码的费率
+- @michelb：如果 30 年后我还要看代码、维护代码、为代码操心——那说明哪里出了大问题
+- @Keyframe：别装作所有人的代码都是质量标杆——外面大多数软件本来就是 hot mess
+- @beAbU：在真正好的遗留代码库上干过吗？我分不清你预言的未来和今天的现实
+- @MagicMoonlight：见过 Windows 吗？我们已经有 30 年的 slop 了
+- @pkulak：亲历 vibe-coded 开源项目：名字带 "lite"（号称简单替代品）、一年 4 万 commits、1.5 万 PRs、满是 bug；我修了一个提 PR，几小时内就被挤出第一页，永远不会被合并——换了个 velocity 低点的项目
+- @lenerdenator（前排#4）：答案完全取决于管理层当下对 GenAI 的目标是什么；似乎有种趋势：工程组织外的人认为软件"铁三角"（快/省/好）不再成立——三个全选而且第一个无上限
+- @gabriela_c（前排#5）：Claude 第一遍常做得比我更细更好；但完全无法忍受 LLM 生成的注释——这是最让我担心和烦的，几乎不让未编辑的 LLM 注释过审；用自己的 vibe-coded 工具跑多轮 GitHub-PR 式 review 再发给 agent 修；它在大 codebase 上 struggle 于 idiomatic 写法，有时对"为什么能工作"plain wrong 即使结果对；已经基本不手写代码，只写重要/有趣的
+- @jazzypants（回复）：LLM 文档的最大价值是气得我重写正确——"不！为什么要这么说？根本不是这样工作的！现在我要写一整段确保未来的 agent 不被同样误导"
+- @mkozlows（回复）：啰嗦注释不是 LLM 通病，是 Claude 特有——Codex 不写那些恶心超长注释
+- @jcgrillo（前排#6）：100 commits+好 readme+自动测试从来不等于经受过生产考验——即使分支全覆盖，性能/安全/意外用户行为只有生产才能暴露；vibeslop 世代这个问题被放到台前
+- @hirvi74（前排#7，情绪）：程序员身份焦虑——5 年、10 年、50 年后？存在主义式的虚无与恐惧；不想以"被需要的那种方式"被需要
+- @cortesoft（回复）：新技术领域的工作 50 年后大概率不以同样形式存在——你开始做之前它也不存在 50 年；这对有意义的工作是奇怪的要求吗
+- @zarzavat（前排#8，关键观点）：AI 并没有变得更可信——错误只是更隐蔽：不编译一眼可见；编译不跑也容易；编译、能跑、但边界 case 错/有安全洞/埋技术债/架构可疑——难发现且一点没减轻 review 负担；"truthy" 代码比明显烂代码更耗心神去 review
+- @christoff12：这一直如此——"先证明可用再冒险"仍是边界所在
+- @xantronix：当前自上而下的狂热指令令人沮丧、反驳常常 career-limiting；指出明显问题总有 workaround，而 workaround 被揭穿时……（截断）
+- @asdfman123：可以让 LLM 做 TDD——先写若干测试再让代码匹配，并让它组织好代码
+- @hintymad：诚实反问：人也一直犯微妙错误，为何对 AI 双标？我的答案：人手写时带着 purpose 推理代码，错误有根据（截断）
+- @sanderjd：切小 chunk 工作大有帮助（和人干活的道理一样）
+- @esalman：真实事故：经理报告 Copilot 篡改测试让 edge case 通过；独立原型所以抓到了，但 debug 修复比预期难得多；个人现在逐行手动接受 Copilot 的代码
+- @_jss（前排#9）：实际体验：写较详细 prompt 但留大量实现细节，Opus 4.7 按 90% 与我相同的方式实现，还带更多便利方法和步骤校验——很好，解放我去想更难的问题
+- @exographicskip（回复）：Python 主力但常用 rust/go：13 年一门语言的深厚经验让指挥 LLM 简单得多
+- @xienze（前排#10，反驳原文管道工类比）：完全不信这个论证——若 $20/月能派一个百科全书级、多数时候做对、可观察可指挥的初级水管工，人人都会秒订；最坏请贵的老师傅收拾残局；"人也可能烧了你家房子"——不是总被提醒别双标吗
+- @cortesoft（回复）：我真就每月 $20 订了水管工服务
+- @wavemode（回复）：你要比的不是 $20 AI 水管工 vs 千元真水管工，而是"当 $20 AI 水管工存在，迟早有 $30 帮你管理 AI 水管工的公司"——原文说的正是这个
+- @mohsen1（前排#11）：实验：用 AI 助手写整个 TypeScript 编译器（github.com/mohsen1/tsz），已投入 4 个月；可能失败，但若 LLM 要写大部分代码，最好先弄清这能不能成；结论：设计和大想法仍由我们负责
+- @Insanity（回复）：同样实验 2D 卷轴射击游戏——小时很好；代码库和 docs 变大后开始幻觉（Codex/gpt5.5 约 50% 上下文时），会真的忘记更新部分代码
+- @copypaper（回复）：4 个月 >25k commits ≈ 每 7 分钟一次 commit——怎么编排的
+- @etothet（前排#12，金句）：Vibe Coding（和 LLM）没有创造不自律的工程组织和工程师——它们暴露并加速了他们；从未有标准的人/团队现在能产出多得多的代码
+- @datsci_est_2015：坏工程师继续坏，好工程师继续好；我认识的最好工程师从来不是因为写码快；他们靠经验、深思和给团队的关键洞见 steering 系统方向
+- @bitexploder：几乎没测试没 invariants 的 vibe app 当然变 spaghetti；可以让 agent 写小模块、强制重构；好工程无论 agent 还是人写都成立；当前人类仍必须至少理解并驾驭架构
+- @jakevoytko：很多人成长于"出了问题再修"心态；以前代码库会开始抗拒功能开发，修完瓶颈又能踢一阵子皮球；frontier 模型把"成问题"时刻推得更远了
+- @jsemrau：同理适用于银行与放贷标准——归根结底是治理与职业操守问题
+- @lumost：问题本质是 BS 检测：lead 说不可行，PM 用"Claude Code 能做"顶回去；问题数月后在上线时爆发，工程师背锅；新人用 trendy 愿景拉管理层上马→app 破碎；协作变得几乎无法忍受
+- @teeray：等待下一阶段升级——团队觉得 code review 阻碍 vibe coding 乌托邦，届时大概会"AI-only review，人类意见免提"，好勾选"所有变更已 review"的安全清单
+- @tbrownaw：纪律丧失可来自恐慌或贪婪——相信自家或对手成本骤降 10 倍可激发二者；（绿地项目还可能是刻意实验）
+- @layoric：用了 Matt Pocock 的 skills 后转变认知：LLM 的主要效用是终极橡皮鸭；grill-me 最有用——不是为后续写码，而是迫使我把想法写下来并探索
+- @jillesvangurp：它也在帮助有标准的工程师：我的 guardrails 只是强加合理工程流程；模型变好后似乎不需要被告示也会做这些事；编码工具自带的功能也越来越多
+- @adastra22：LLM 是加速剂——把伟大工程师抬到更高产的天堂，也把烂工程师的 sloppy 输出海量放大
+- @criddell（前排#13）："agentic engineering" 读起来像"业余肿瘤科医生"——你们怎么定义 engineering？agentic engineers 能遵守专业工程师的伦理守则吗（附 NSPE 链接）
+- @vehemenz："我们做的大部分事算不算 engineering"这个问题比 LLM 早 15-20 年
+- @senko：软件工程师能遵守吗（反问）
+- @rglover：能——我用 Cline 做 gas-and-brake 式细粒度 review，像结对编程；例行拒绝跑偏的 turn，每天多次对它的改动做热编辑
+- @bhagyeshsp（前排#14）：问责与生产者的距离是重要度量——谁为哪个产出负责必须保持明确，否则就有 guilt；组织需要更精细的激励与惩罚机制
+- @devin（前排#15）：LOC 被用作工程产出度量令人尴尬
+- @etothet：附和——LOC 是我们集体抵抗管理层的东西
+- @estimator7292："提到 LOC 的次数"现在是衡量"这人有多无知"的好指标
+- @ilikebits（为 LOC 辩护）：LOC 在这里不是产出度量而是可理解性度量——review 200 行和 2000 行是完全不同的工作量
+- @mcmcmc：文章的核心恰是产出速度超过了人类可 review 的速度；review 恰恰必须逐行读
+- @adtac：LOC 是最差的工程产出度量——除了其他所有度量（Churchill 梗）
+- @vrganj：按 LoC 度量软件工程 ≈ 按给飞机加了多少磅度量航空工程
+- @root_axis：他不是把 LOC 当指标，是在观察典型 LOC 体量变化的影响
+- @faizshah（实测数据点）：同一个程序 vibe coding（不看代码）产出 ~10k LOC（重构后仍是）；自己脑+ChatGPT 当 google/自动补全只写 1500 LOC；工作量差异其实不大，手写版可能还受益于设计期思考（截断）
+- @jwpapi：过去 2 个月删掉 75000 行代码，比 AI 前两个月写的 75000 行对业务有用得多
+- @np1810："代码是负债不是资产，代码背后的想法才是资产"；前公司用年增 LOC 区分好工程师 vs PIP 工程师，删行被视为……（截断）
+- @dyauspitr：现在更像 200 → 100,000 行质量尚可的代码
+- @keeda：LoC 作为"产出"度量没问题，作为"生产率"独立度量才糟糕；它仍是唯一跨公司/团队/语言直观可比的指标
+- @sva_：怀疑 '2000 LOC' 是在致敬 80 年代 folklore.org 的 "Negative 2000 Lines Of Code" 轶事
+- @moomoo11：Garry Tan 在 X 上鼓吹 LOCmaxxing
+- @zuzululu（前排#16）：vibe coding 就是现在的 coding——以前写汇编也是件事直到更高层语言出现；LLM 类似，只是把英文编译成代码；这 understandably 吓到从业者
+- @causal（前排#17）：agent 越会写码我们越信任它产更多——还有 bug 要找，但 haystack 变大：待找 bug 数守恒，待 review 代码量随 agent 能力扩张
+- @drfloyd51（前排#18）：期望机器永远赶不上熟练人类是纯粹傲慢；AI 生成代码本该与人不同——AI 有无限的细节记忆、不需要类这样的组织模式、可能写出比任何人都高效的代码；看着像垃圾？当然；更适合任务？是
+- @vehemenz（caveat）：组织良好、运行连贯的代码（无论谁写）都更容易迭代——LLM 或非 LLM
+- @tyyyy3（反驳）：纯粹的傲慢是你——Anthropic 给金融做 agent 以为能大幅提效因为全是勾选框和表格？不，just no
+- @jazzypants（反驳）：不信带多余 cruft 和重复的代码"更适合任务"——我已经删了几百个无用/未用函数；唯一能同意的理解是"它没理由地穿了多套西装"
+- @tuom1s：AI 公司涨价后怎么办：只有 AI 能懂的代码；本地模型又不如大厂；没有任何东西阻止贪婪公司实现只有自家模型能对付的荒谬模式
+- @dataviz1000（前排#19，方法创新）：观察：agent 第一次就非常接近答案，然后最后 10%/5% 要巨量工作；十年前我每 10-15 分钟停下重构/测试/分析，因为 bug 会腐蚀下游代码——coding agent 不这么做也不会，它们带着 bug 或畸形架构继续；纠错本能是让 agent 在这些点停下——但不可能；所以应该反着来：找到 agent 犯第一个错的地方，改 prompt，删光全部代码（因为很便宜）从头顶重跑，循环
+- @nichochar：手写其实也常这样——"能跑的东西"很快出来，但评估其他方案/精修/测试建立信心耗时；你的观点成立但边界在哪没人知道
+- @tyyyy3：生活的普遍问题是最后 5-10% 永远最难；在多数情况下机械化投入最后一段没有经济意义；LLM 厂商从最初就选错了路线——该补强劳动而不是替代劳动，他们学到了昂贵的一课
+- @skybrian：我习惯先搞能跑的再重构出来——agent 也能做但耗时；也许推倒重来更好，只是开始时我不知道架构该长什么样
+- @deadbabe（反驳）：大量代码已 commit 后这招不灵——不能因为 LLM 挣扎于现有架构就炸掉整个能跑的代码库
+- @NickNaraghi：Anthropic 团队把这叫做 "regenerate, don't fix"；做出原生支持这流程的 agentic IDE 或 GitHub 替代品的人将成为亿万富翁
+- @randyrand：长 session 一直产好码，但我第一次说 "No, it should be…" 就近乎 game over；连说 3 次基本完蛋——bug 能修，但代价是未来 prompt 几乎不能工作
+- @fransje26：可悲的是留给人类的是糟糕乏味的部分——想起那句"我要 AI 做洗衣做饭好让我搞艺术写作，而不是 AI 搞我的艺术写作"
+- @tyyyy3（前排#20，对作者）：Simon 你之前对 LLM 和 agentic 相当乐观？常见的毛病是无法 zoom out 看 trade-offs——能否定义 trade-offs 并分析净收益
+- @simonw（作者回复）：我仍然乐观——LLM+tools 循环是迷人的新软件构建方式；coding agent 正在颠覆软件开发，我们仍在摸索；尤其在大型生产级项目上如何最好使用，还没有人有自信的答案
+- @drmajormccheese（前排#21）：提升软件信心的技术全套都在：单测/集成/fuzz/property-based/静态分析/model checking/定理证明/形式化方法；LLM 不只生成代码也生成测试——目标是测试比代码更容易被人审计
+- @exographicskip（回复）：曾经最不喜欢的测试现在是花时间最多的；property-based testing 在我引入过的每个代码库都揪出 invariants；很多 agent 生成的测试最终被扔掉，也许我该多手写
+- @sfjailbird：怎么确保 LLM 代码能工作？用 LLM 生成测试！等一下……
+- @coldtea：同样缺理解、关怀和人的问责
+- @Sparkyte：vibe coding 的收尾问题——不特别处理就有塑料般同质化（plasticy samey）的质感
+- @treespace8：这难道不只是又一类 AI slop？与文本/图像生成有何区别——图像"就是不对劲"，看得出没人在乎
+- @simonw（作者回复，关键区别）：区别在于 coding agent 能运行自己产出的代码、修 bug、建测试并演示它工作——图像和文本做不到
+- @DonHopkins：我反过来：让 AI 精炼我自己的设计、在严格监督指导下写码、仔细 review 迭代；石刻课的启发——不可能一锤子凿出雕像，是百万次小凿让雕像自然浮现；vibe coding 是指望第一锤就出整座雕像
+- @saltyoldman（前排#25）：工作中做 agentic engineering——提交 review 的代码全部亲手 review，知道每一行每一文件；side project 80% vibe code——偶尔看看全是坏东西，骂 Codex 一顿它就帮我重构
+- 来源: research/raw/discussions/hn-vibe-vs-agentic-engineering.md（https://news.ycombinator.com/item?id=48037128；原文 https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/）
+
+## hn-vibecoding-two-years-handwriting.md（After two years of vibecoding, I'm back to writing by hand，HN 865 分 206+ 评）
+
+- 【原文核心】两年 vibe coding 后回归手写；关键引文："Agents write units of changes that look good in isolation. They are consistent with themselves and your prompt. But respect for the whole, there is not. Respect for structural integrity there is not. Respect even for neighboring patterns there was not."；作者称手写在算总账后更快/更准/更有创造力
+- 【原文比喻】"AI 只是讲了一个好故事"——像 vibewrite 小说：段落句法都对、甚至抓住人物怪癖，但整章在全书语境中不成立
+- @timcobb（前排#1）：佩服此人比 vibe coding 这个词存在的时间还早——真正的先驱（讽刺）
+- @mossTechnician（考据）：GitHub Copilot 2021 年发布，Cursor 约 2023 年 10 月
+- @rpigab（考据）：术语由 Karpathy 2025 年 2 月提出；但人们说 "vibe coding" 时常指"重度/全部 LLM 辅助编码"——不同义但听着更好
+- @naikrovek（前排#2）：他列的弃用理由，正是我们这些勉强采用者从一开始就在说的
+- @mettamage（前排#3）：可以防御：方法=理解自己的代码库+看 LLM 输出；LLM 让我写码更快还带来概念发现（比如从没用过的 Tailwind）；它不免除我了解自己代码库的责任；vibe coding 对绿地项目快速高保真原型极佳（截断）
+- @acedTrex（反驳，定义之争）：看了 LLM 输出就不是 vibe coding——vibe coding 的核心、几乎是唯一要求就是"不看代码，只看产品结果"
+- @recursivedoubts（前排#4，CS 教师）：AI 极危险在于它把简单事做得太好——阻止新程序员真正学会简单的事，从而在内脏层面学不会中等/更难/meta 的事；我对学生明说："you HAVE to write the code. You CAN'T let the machines write the code."
+- @Quothling（反对，丹麦 CS 外部考官）：不同意；行业需要能独立思考、能与业务对话理解需求、懂计算机原理的工程师；我们产出的是批量 coders，教的是过时的设计构建方式（还要花力气扳过来）
+- @orev：举重类比：可以开叉车举重，但目标是增强自身力量时叉车帮不上忙；学习也一样——挣扎着攻克新概念本质上就是重点
+- @jillesvangurp：教学要适应：教"代码如何工作"比"如何敲代码"重要；学编程更多是学 CS 的副产品（PhD 出身自述）
+- @criddell：它们也不总把简单的事做好——Windows GDI（memory DC/compatible DC/DIB/DDB/DIBSECTION/bitblt/setdibits）AI 全搞不懂；让它辩护选择时（截断，暗示胡说）
+- @nso：100% 同意（教师），但 25 年经验的人表示：不用做无聊部分真爽
+- @WalterBright（D 语言作者）：金工课类比——先给每人一块金属一把锉刀锉出扳手，再上机床；目的是建立对金属切削的手感和对机床在做什么的理解
+- @pmarreck：我几十年没手算除法了、可能已不会，从未实际耽误我（除非计算机和计算器都消失）
+- @Isamu：作文同理——自己写锻炼不同神经通路；有评论称与 LLM 协作反而锐化了组织思路的能力，值得研究
+- @nonethewiser：变了吗？学生从来没有学习 fizzbuzz 的天然理由——这些练习从来就武断；我更担心的是中年还把 AI 斥为无用的开发者；现在学东西和有产出都前所未有地容易
+- @acessoproibido：大学手写排序/汇编/MIPS 的时间，不如一个周末瞎抄 Minecraft hack 模组学到的编程多；EE 出身自嘲
+- @danmaz74：学基础数学时别用计算器（否则不理解原理），学高阶时可以用——因为聚焦不同抽象层；两种情形类似
+- @andrewflnr：教程代码复制粘贴学不到手敲那么多——这个问题早就有，不新鲜
+- @goostavos（面试实录）：上周面试实习生：教科书知识优秀、任何数据结构时空复杂度张口就来，但无法解释自己"写过"的代码如何工作；痛苦困惑多分钟后（截断）
+- @mellosouls：话虽如此——"指挥 LLM 产出软件"正迅速成为又宽又深的必备技能，缺它才是应届生弱点
+- @FloorEgg（教育学框架）：关键在维果茨基"最近发展区"（ZPD）：学生用 AI 最快完成任务→跳过全部学习（太易）；完全不用→太难；落在 ZPD 内才能学
+- @sltr：LLM 不是"心智的自行车"而是 E-bike——助力更大骑得更快，但锻炼更少
+- @GoatInGrey："Why think when AI do trick?" 是诱人的深坑；生活压力大、时间少，像哭闹的婴儿在耳边——第一次戴上魔戒解燃眉之急后，下次的心理摩擦更小，渐渐地……（截断）
+- @leros（人才观察）：junior hype vibe coding，senior 多把 AI 当 assistant；我招带过大量应届生：一年经验后 20 倍产出；vibe coding 把新人带到 5x——看着惊人，然后卡死在那，因为不再学习；第一年后差距（截断）
+- @daxfohl（自我实验）：vibe coding 一个月后停订——现在看代码就是"呃，要用我自己的脑子想这个？？？"；连 vibe 时都烦"要解释东西"；对任何不"直接能跑"的东西的耐心在萎缩——这是 constitution（体质）问题
+- @syphia：分界线是 code-as-thinking vs code-as-implementation：不做琐碎作业、不 geek 实现细节，就学不到"代码是什么、能做什么"；没有用代码思考的清晰度，指挥 AI 的程序员是盲人领盲人
+- @xnx：当年人们也这么说编译器——取决于你关心/聚焦哪一层；AI 至少给了我们再上移一层的选择
+- @fn-mote：新问题：现在还得额外学"带 LLM 助手编码"这项技能——不同于自己写，也要教
+- @godelski：coding agent 只是把老问题抽象了：计算机做你说的，不是你想说的
+- @f1shy：让学编程的人用 AI，就像让 6-10 岁小孩用袖珍计算器——现实里计算器随手可得、错更少，但要学会和理解，必须手动做
+- @simonw（前排#5，重要反驳）："agent 无法在多周建设中演进规格"——那是你的工作；coding agent 的妙处：你说"设计变更：所有 API 交互改走一个统一类，做认证/重试/限流"，它能追出几十上百处需要更新的地方全部修掉；（而且自动测试套件会帮它确认重构正确——你们当初让它建测试套件了对吧？）；因为缺乏 agent 管理技能去指挥 agent 清理它们制造的乱局就退回全部手敲，是短视
+- @disgruntledphd2：LLM 生成的测试套件既 over-determined 又 under-determined（部分测试聚焦错，截断）——也许我标准高
+- @lunar_mycitht（反驳 simonw）：引用你自己的博客——他的工作是"deliver code he's proven to work"，不是管理 AI agent；作者有多年的 agent 经验才得出"长期看管理 agent 不是有效交付方式"
+- @permo-w：（对原文作者）不是短视，是 virtue signalling
+- @billynomates（前排#6）：假二分法——存在 happy medium：即使 spec 变化也能编排 agent 给你想要的代码
+- @dv_dt（前排#8，命名概念）：预测"AI eternal summer"（AI 永夏）：从 developer→AI 的 spec 看，AI 按 spec 实现到某个质量水平，但之后的收尾差距是无尽追逐的小项、永不同时收敛；从用户看，受挫于某个 AI 实现的 app 就跑去 AI 再实现另一个 app，带着另一组功能和缺陷
+- @altern8（前排#9，中间路线实践）：AI 做自包含的中小任务，人检查它做的一切以保持与全局模式和愿景一致；人在环里、频繁 commit；很多问题出在让 AI 做整件事；"把代码重构得更现代"这种模糊指令它会猜；任务小而 spec 清楚时效果好得多
+- @sailfast（前排#10，部分质疑）：全文共鸣直到"我其实比 AI 快"——新代码库/新语言/不同环境下我不可能比 AI 快（含 AI PR review 的地狱）；答案：AI 能独立完成的快速放手，大的事用 slow、composed、human-in-the-loop 确保正确
+- @dylanowen（回复，对立面）：恰恰这些部分更需要自己挣扎学习——若因为 AI 在新代码库比你快就依赖它，那个代码库对你永远是新的，你永远无法有效 review AI 代码
+- @douglaswlance（前排#11，方法论批评）：不展示 prompt 线程或未剪辑的工作流，任何观点都不值得加权——这是高度个性化的技术：同起点两人两年后可能发展出截然不同的工作流
+- @jdauriemma（回复）：悲哀的是经验主义稀缺——人和公司把 AI 实践当贸易秘密；这与之前以开放、可获取、宽松许可技术为基础的软件运动根本不同
+- @rtp4me（前排#12，跨模型二评实践）：我不再信任单个 LLM 的意见——尤其复杂项目；见过 Claude 保证正确，喂给它 Codex/Gemini 的批评后立刻道歉；且很多问题不是小事而是 significant critical oversights；习惯：假定单个 LLM 正确之前总拿 2nd/3rd opinion
+- @ozten（回复）：不必换基础模型——温度调高同模型跑 100 次也行
+- @kaydub（回复）：同样做法——所有 LLM 写的代码由另一个 LLM review，我 verify 那个 review，再让一个 agent 对全部迭代
+- @rich_sasha（前排#13，适用域划分）：适合"费力但写完即对错分明（低工作量检视）"的代码——替代 MS-SQL 的 REPL、Python 缓存工具、matplotlib helper（NP 类）；但业务关键代码复杂、边界微妙、需防御式失败（可预测优雅地失败）、结构良好——怎么都无法让 Claude 达标
+- @nonethewiser（回复）：编程最难的部分从来不是编程——是把新业务需求翻译成可行的实现计划；那些场景你不能省掉自己：读、想、调查、拆小问题（但仍雇 LLM 干活，截断）
+- @tomtomtom777（回复）：问题是它在填本不该存在的缝隙——好代码不费力，好代码是小的；我们学着避免不必要抽象、最小化 plumbing（截断）
+- @ncruces（前排#14，小说类比）：读过 200 页满意的全 AI 小说吗？那为什么觉得 10 kLoC 的全 AI 代码库工程上会好？——爱好者需要论证这个类比不成立
+- @ashikns（反驳）：小说是创意输出；工程是理解大量规则和需求后写逻辑满足之——后者输出定义显式得多
+- @rahimnathwani（反例数据点）：我儿子读过 GPT 4.5 写的两本完整小说（逐章生成，每步给全书大纲+人物+已写各章摘要）
+- @lopatin（反驳）：类比不通——小说该有趣，代码只该能用；若 AI 丢线索，换个更好的高层指令重来就是
+- @causal（方法论建议）：vibe-writing 小说实验可作为自评 AI 使用水平的手段；怀疑对 vibe coding 证词分歧巨大的部分原因是有人真的更擅长——值得想办法度量这种有效性
+- @ChicagoDave（前排#15，正面对抗叙事）：存在 tipping point——学会突破 cruft 后能规模化生成好代码：需要 at-scale 重构，但 GenAI 快，同一段代码锤 25 次不是问题；重构目标越来越小直到全项目极佳；Sharpee（交互式小说创作平台）99% Claude 写、100% 我管理，重构了至少 12 次；上千单元测试，我通读过、部分手改
+- @ChicagoDave（补充）：用不用 GenAI，强制 guardrails 都关键；记录决策关键——Sharpee 的成功根植于 docs/architecture 目录
+- @ramon156（前排#16）：+1，我已失去多数项目的 mental model；还给项目加了免责声明"部分代码 AI 生成"以免误导
+- @jstummbillig（前排#17）：coder 面对遗留代码库（有时是自己造的）bewildered 的故事不新鲜——与 vibe coding 关系不大
+- @zeroonetwothree（反驳）：干了 20 年，自己写的代码从没真正这样过——也许记得不是每行，但高层轮廓总记得得起来；承认自己可能是 outlier
+- @AstroBen（前排#18）：作者 YouTube 频道有多个视频讲他与 AI 的具体问题，值得看
+- @couchdb_ouchdb（前排#19）：祝你好运找到允许你这么干的雇主——新现实是没人能给出以前的估时；"算总账后我比 AI 快"对 99.99% 的开发者不成立
+- @jrm4（前排#20）：这类文章绝大多数就是一句话："AI 擅长造零件，暂时非常不擅长大局"
+- @jdlyga（前排#21）：我也经历过这个循环，最终意识到：开发者工作的大部分就是确保你写的代码能工作、可维护、你能解释它如何工作
+- @TrackerFF（前排#22）：希望批评者开始展示 slop 代码的例子——很多 junior 读了这些文章也不知道 slop 是什么、长什么样（you don't know what you don't know）
+- @reedf1（前排#23，考据）：Karpathy 11 个月前才造词（x.com/karpathy/status/1886192184808149383），引起轰动；你 vibe coding 两年？？
+- @jv22222（回复，突破经验）：我头几个月也经历"代码看着好其实糟"，push past 后现在运转很好；修复法：在 research/planning 阶段与它一起工作，让它列出全部提议改动，对垃圾 push back；research doc 端到端看着好了再实现（截断）
+- @9rx：2023 年 11 月 Copilot 加 chat 后我就成功 vibe coding 过一次——两年相当现实
+- @kaydub（回复）：又是不自省工匠的 FUD
+- @HarHarVeryFunny（回复）：Karpathy 造词是一个意思；现在很多人用它泛指"让 AI 写代码"的任何场景；不需要 Claude Code 这种 agent 工具，聊天机器人也能写（思考模型+RL 后处理更好）
+- @coldtea（前排#24，暴论）：他可能回到手写了，但这篇文章本身就是 AI slop
+- @xcodevn（前排#25）：观察：vibe-coded 应用质量显著低于传统软件；Anthropic 自称 90% vibe coded 的软件 bug 极多，尤其 UI
+- @gowld（反驳上条，定义澄清）：这是基于宽松定义的误解——公司喊"90% 代码 AI 写"时算的是自动补全字符数（多数相当于十年前 Eclipse tab 补全）和单方法局部 prompt；不能（截断）
+- @leesec（前排#26）：顶级实验室的人 100% 用 LLM 写码，享受手写吧
+- @kylehotchkiss（回复）："他们 VC 比我多所以他们对"不是好论点；有其他大软件公司成功这么干吗？那些故事更有分量
+- @bopbopbop7（回复）：造 x 的公司说全员用 x——人们一直这么容易被营销吗
+- @andai（前排#27，实操经验）：我的用例是简单直接少抽象的代码——但得刻意说服 LLM 才行，否则默认加尽可能多的 bloat 和抽象（训练集的默认运行模式）；交互式分 chunk 让整体合理；用最小能干活的模型（快且省）；大模型有质的差别但日常任务用不上（截断）
+- @arendtio（前排#28）：有几分真，但为什么非黑即白？没人强迫你完全放开代码，也可以小迭代
+- @aaronrobinson（前排#29，重要实践框架）：我读到人们让 Claude Code 自由发挥，但用了几个月后——它产出的大量东西是彻底的垃圾，CC 又惊人又让人沮丧；"写更详细的 spec=回到瀑布"的驳斥不对——更多迭代移到了 spec；写码太快，spec 变更以前不敢想的现在敢了；还需要 gates（测试）和非常规律的 commits + 持续调优的 agent file/guidelines；正逐步回到放手让 Claude 实现并只扫 git diff
+- @dudeinhawaii（前排#30）：评论区跳过了原文最清楚的论点：当前做法是"15 分钟速写设计→AI 实现"，对比人类团队的做法——计划、pitch 设计、收反馈、琢磨利弊、开始实现、pivot、顿悟、设计演化；vibe coding 急于 fire-and-forget，把不完整的知识交给一个只有你 1% 心智模型的模型——这不是可靠持久代码的配方；spec 冻结时 spec-driven 不 work（截断）
+- @kaydub（回复）：spec 可以随走随更新——没有什么让它不可变
+- @Lerc（回复）：这或许就是 reporter 与 researcher 的区别（新闻报道式 vs 研究式，截断）
+- 来源: research/raw/discussions/hn-vibecoding-two-years-handwriting.md（https://news.ycombinator.com/item?id=46765460；原文 https://atmoio.substack.com/p/after-two-years-of-vibecoding-im）
+
+## hn-ask-getting-better-at-ai-coding.md（Ask HN: How can I get better at using AI for programming?，HN 471 分 187+ 评）
+
+- 【楼主问题背景】prompting 无法让 AI 代码质量达到自己手写的 90%；问如何提高（含 Django→SvelteKit 迁移场景）
+- @realberkeaslan（前排#1）：推荐 Cursor：UI/UX 好、agent 上下文好；流程=Prompt→agent 干活→review 改动→重复
+- @ojr（反驳 Cursor）：太吃内存、多文件重写幻觉、accept/reject diff 的 UI 让 git 成为噩梦；因 VSCode fork/Electron 缺陷自己用 Rust 写了编码工具；顶配 MacBook 才跑得顺
+- @listic：不想用闭源工具的人可用 Cline、Aider（未亲测）
+- @rdrd（前排#2，方法论）：先精确定义"idiomatic"——你的 idiomatic 不是 LLM 的；做法：①写逐步的规范/风格文档，含 Good/Bad 小例子，不要"照这个文件做"（太宽）；②喂给 Opus 4.5 planning mode，让它提问题、补缺口，产出 final implementation plan.md，审查删 fluffy（截断）
+- @XenophileJKO（回复）：当代模型不必每次不满意就重启；我常在 review 时想到更好抽象就 inline 连续要求 refactor，极少失控
+- @Alan01252（前排#3，实践清单）：①先与 AI chat 模式讨论要建的功能，"达成一致"再切 agent 模式（Google Antigravity 默认这样，可能是正确范式）；②先把基础弄对——AI 极易产 slop，用开发经验提前引导（像教练 junior）；③让 AI 先写测试，BDD 对 AI 极有效（截断）
+- @Esophagus4（回复）：最重要的提示——prompting 本身是技能，需要按天/周/月练习；多和用好工具的人聊、读博客/HN 找想法
+- @8cvor6j844qw_d6（前排#4）：Claude Code 在高度具体、窄 scope 任务上最好，仍需 course correct；好乘数、杂务助手、非替代；仍需对代码库的好理解；写 commit log 摘要惊人地好
+- @mirsadm（前排#5）：全部拆成超小任务；总让它先 plan；review 计划挑错；一次只做一步控制全程；只要不做任何"有点独特"的事这流程就够好——稍独特的事它就做不好
+- @kgwxd（回复，质疑）：那你其实做了全部实际工作——既然要拆解问题为何不直接敲代码？反正输出你都要 review
+- @Frannky（前排#6，心智模型）：把 LLM 当 searcher（在有效空间内微调数据的搜索器）：小上下文、小而精确的问题；训练数据里没有的别反复重试；语言在训练集占比低效果就差；修改越少越好——离训练分布越远错误率越高
+- @seg_lol（反驳）：略有缺陷——LLM 是搜索但空间稀疏，问题大小决定高维空间封装体积；小 prompt 唯一优势是计算成本，其他方面都是劣势
+- @bogtog（前排#7，高价值技巧）：语音转文字是给想用 AI 编程的人的最大建议——口述 500 词 prompt 最完整表达意图，模型无需猜测；打字 70-90 WPM 但要想内容就掉速，说话/思考 100-120 WPM 舒适；降低了"完整描述需求"的摩擦；另外"if you have any questions, ask me, otherwise go ahead"很少产生问题——要主动问"do you have any questions?"
+- @cjflog（回复，实践）：laboratory.love 几乎全用语音+Claude 建成；热键绑定常用收尾 prompt："Before writing any code, first analyze the problem and requirements and identify any ambiguities, contradictions, or issues. Ask me to clarify any questions you have, and then we'll proceed to writing the code"
+- @d4rkp4ttern（回复）：流程=VoiceInk 口述→"tell me what you understood"——重述让你的话进入结构良好的格式，确认 CLI 收到，显式表达也帮它 stay on track
+- @dominotw（回复）：惊讶 AI 公司不把这个流程产品化，让用户自己琢磨怎么把语音转进 prompt
+- @dboreham（前排#8，五步法）：①介绍代码库（项目做什么、什么语言）让它熟悉；②说要重构达成目标 Z，让它说怎么 approach（可展示一个你已做的 before/after 例子）；③让它只重构一件事，看它做了什么；④不对就 course correct；⑤重复
+- @morkalork（前排#9）：在项目文档里设 guardrails：写单测 vs 功能测试时 agent 允许做什么、永不使用的包、编码与风格模板等
+- @helterskelter（前排#10）：追问 "Does this make sense?"——迫使它用自己的话重述问题，既展示它的理解，也似乎强化了 prompt
+- @serial_dev（前排#11，rules 沉淀法）：和 Cursor 结对改一个 route：告诉它我要什么、不喜欢就帮它理解为什么；改完一个 route 后让它"based on the current chat"写 rules 文件（含你想改的例子+理由）；下个 route 只说 refactor；发现不喜欢的就纠正并提醒更新 rules 文件
+- @mmaunder（回复）：别怕写长 prompt——我们称之为 context engineering；上下文窗口填入的适用知识越多结果越好；让模型写码+你与模型对话本身就有 context engineering 的 side effect
+- @rpwverheij（回复）：完成任务后让 agent 写"规则文档"同样有效——基于当前线程（你与 agent 一起发现规则的过程），含例子，遇到意外情况暂停报告
+- @coryvirok（前排#12，跨框架技巧）：sveltekit 专用 hack：先让 Claude 把现有代码翻译成 next.js+react，跑通调好，再翻译回 sveltekit/svelte；尽量保持单文件直到能跑再拆——效果很好
+- @hurturue（前排#15）：prompt 里放 before/after 例子（原 Django 文件+改写后 SvelteKit 版）；让它用例子做模板转换另一个文件；2-3 次转换后你就有最重要的规则；或把 agent 的一次烂尝试修好作为第二个例子
+- @thinkingtoilet（前排#16）：现实限制：当前 AI coder 多数时候产不出好代码——必须逐行 review
+- @seg_lol（前排#17）：语音 prompt、多视角重述需求（每个视角是高维空间的光锥，答案在交集）；给自己人为约束；用尽可能多荒谬方式尝试； relinquish control
+- @ipunchghosts（前排#18）：学会"请人做事"——如何与有缺点但整体有用的人/工具互动
+- @daxfohl（回复）：记住它不是人——花大量时间说服它按某种方式做，一个 prompt 后全忘光回退（人也会这样但不到这个程度）；它只是工具，不按你想要的做就该换方法
+- @bcherny（前排#19，Claude Code 团队 Boris 官方建议）：①Claude 反复出错/不理解/烧 token 的事写进 CLAUDE.md（我每周给团队的 CLAUDE.md 加几次）；②用 Plan mode（shift-tab 2x），来回讨论到满意再执行——难任务轻松 2-3x；③给模型自查手段——如 Puppeteer MCP server 让 Claude 在浏览器里自检，再 2-3x；④用 Opus 4.5，相比 Sonnet 4.5 是阶跃
+- @epolanski（回复，反驳①）：4/5 的交互会完全忽略；试试在 CLAUDE.md 加"永远称呼我为 Mr. bcherny"——很快就不再执行
+- @Etheryte（回复）：Claude 无法不动代码注释——明确说五次"别改注释"照样全搞乱，这是我开这个帖前的亲历；更别说它多常忽略 CLAUDE.md
+- @ed4bb9fb7c（回复）：笑话——Claude 经常无视该文件；我们公司玩猜"它先忘哪条"的游戏：跑测试/formatter/linter……尽管写着 ABSOLUTELY MUST、you HAVE To；已取消（截断）
+- @hansmayer（回复）：请 Claude Code 团队停止亲自或通过影响者推销 CLAUDE.md 叙事——它不是真的；指令常被忽略，"忽略"这词都太高——工具没有 sustained attention（截断）
+- @jbrooks84（回复）：Claude code 基本不用 CLAUDE.md，但我希望它用
+- @tlarkworthy（回复，工具）：course correct 后来一发 self-reflection prompt（gist 链接）——把需要人工澄清的东西移回 claude.md（或你挑的子集），它写 claude.md 比我写得好
+- @moribvndvs（回复）：建议把最终 plan dump 进文档、分块执行——我 plan mode 计划看着好，执行输出常不是我们计划的；从文档分块执行效果更好
+- @nrds（回复）："用 Opus 4.5"——涨价快过涨质量，还增加延迟
+- @dmd（回复）：想用 Opus 4.5，但（Pro 平民）每天只能干 30 分钟而不是 60-90 分钟
+- @matt3210（回复）：还没见过 agent 做真实生产工作的例子——求教程式视频；我的理解是它只用于 demo 和玩具项目
+- @scellus（回复）：说白了=永久的指令与上下文放在 .md、执行前规划与审查、带反馈的 agentic loop、好模型——任何 agentic harness 都行（Codex、GH Copilot agents 同样适用），纯粹的 prompting 与"LLM 管理技能"
+- @cafebeen（回复）：CLAUDE.md 的 imports 技巧——文件名前加 @ 强制导入上下文；否则文件是否被读取决于 agent 的工具使用与规划（即使明确说"读 file.txt"）
+- @halfcat（前排#20，管理类比框架）：专家升经理定律——替代者最初只能交付 30%（缺多年上下文），AI 不改变这点；两条路：①Externalized speed——当好经理，接受表层理解，激进委派，优化产出；②Internalized speed——当好 IC，建深而精确的 mental model，建正确的 guardrails 和约定（因为你理解问题），无情保护边界，优化未来变更（截断）
+- @UncleEntity（回复）：最大问题是人们让 agent 随便改+它无视你说的直接干它认为对的；我的答案：make it work（所有测试过）then make it right
+- @noiv（前排#24，排错经验）：惨痛教训——CLAUDE.md 里两条信息冲突时它会两条都忽略；精确语言是关键，别用 "object" 这种在不同领域含义不同的词
+- @caseyw（前排#25，流程清单）：①定义工作；②遗留代码库提供迁移目标的好例子与预期结果；③告知支持工具（lint/build/tests）；④先选一个具体场景让它写该场景测试；⑤手动读并调测试，确认测的是你要的、覆盖你要的——测试是实际代码改动的 guardrail；⑥上下文满时开新 chat，带测试+工作定义+相关文件让它实现
+- @daxfohl（前排#26，保守哲学）：慢慢来——追求 10% 提升不是 10x；像手写一样彻底过一遍，不为速度牺牲质量；警惕它自信地把你带上迂回路并编造理由；永远戴着怀疑帽；怀疑就退出会话重来；chat 界面仍比 coding assistant 有用——更高层地讨论架构与想法，反馈环快，不碰源码树
+- @ebcode（回复）：每月 10% 提升，1.1^24≈9.85——两年到 10x（但预期非线性）
+- @orwin（前排#27，安全事故）：极其糟糕的、明显 Claude 生成的测试套件本周通过了团队 PR review——测试无用到：被测代码有竞态条件，若被触发可改写我们管理的任一防火墙的最后一条（最怕 DENY ALL）；但没法全怪 Claude——我用它重写了部分测试并分析修复方案；用法：生成无逻辑的壳（数据模型+函数原型）、写简单函数/helper、（截断）
+- @Fire-Dragon-DoL（前排#28）：所有 AI 代码都低于在乎质量的人类；假设是"不需要代码好看因为 AI 会看"——这个假设有问题
+- @red2awn（回复）：Opus 4.5 是 LLM 里最高质量的代码，仍差于在乎的程序员，但好于多数人；够格"让它写+事后手动 polish"
+- @mongrelion（回复）：产出低质量时下指令能自我改进——"命名不对请换"、"这个设计模式选择不好因为…给 2 个备选方案"
+- @vaibhavgeek（前排#29，半玩笑流程）：①关电脑；②去个好公园；③纸笔写 6-8 行 prompt（用手机查库）；④回 PC 用 Plan mode 问 Claude 将做的确切代码改动；⑤review push PR；⑥等你工作被自动化
+- @cat_plus_plus（前排#23）：AI 擅长模式匹配——项目指令里给几组"旧代码/新代码/详细选择理由"示例；再加 negative prompt：基于过往挫败列出你不想要的事
+- 来源: research/raw/discussions/hn-ask-getting-better-at-ai-coding.md（https://news.ycombinator.com/item?id=46255285）
+
+## hn-breaking-spell-vibecoding.md（Breaking the spell of vibe coding（fast.ai dark-flow），HN 434 分 94+ 评）
+
+- 【原文背景·fast.ai】：vibe coding 的心理机制=老虎机式间歇性强化/dark flow；引用 METR 研究：开发者用 AI 工具自以为快 20%，实际慢 19%——感知与实际近 40% 差异；Armin Ronacher 观点被引用；主张质疑"因科技公司 CEO 的投机预言就停止投资自身技能"
+- @mathgladiator（前排#1）：用满 x20 计划后必须设清晰优先级；已退休，专注把疯狂想法做成书"淹没阵地"
+- @Kerrick（前排#2，双轨立场）：两者不矛盾——过去一年同时学了 DDD 三本（Distilled/DDD/Implementing DDD）、Design Patterns、Agile、Clean Architecture、Smalltalk Best Practice Patterns、Tidy First?——我比 2024 年是更好的工程师；同时 vibe code 了大量软件（有好有坏）；你可以在两个方向同时成长
+- @mattmanser（回复，暴论）：20 年经验：DDD 是愚蠢的想法，把 DDD 书扔进垃圾桶，帮同事个忙
+- @logicprog（回复）：我也类似——拿到 $100 买书预算，买了 A Philosophy of Software Design 和 DDIA：agentic coding 时代什么书 impact 最高
+- @theYipster（前排#3）：会编程≠会架构≠会 UI 设计≠会产品管理；而用 LLM 成功产出软件恰恰锻炼 architect/designer/manager 肌肉——要求它们强壮
+- @LPisGood（反驳）：强烈不同意——好软件工程师不可能不是好产品经理和好架构师
+- @bitwize（反驳）：你在做 architect/designer/manager 的工作却被当作、并按 code monkey 支付——by design（故意的）
+- @asdff（跑题）：讽刺 UI 设计师教团——"好 UI"与用户利益相反；不懂 UI 的人乱搞出来的时代反而更好
+- @daxfohl（前排#4，风险框架）：一切归结为"用太多 vs 用太少哪个风险高"：前者眼下巨大风险——幻觉 bug、被诱入死胡同架构、安全、生产出 bug 时不熟代码、所有权感丧失、动手学习减少（个人和组织层面都是；CEO 们还没联系起来令人震惊）；后者最多次优生产力，而动手训练和对代码库的底层理解长期可能补回；此外我最好的想法常出现在深陷代码库、遇到不匹配的怪边界 case 时——review 一个已完成 PR 永远遇不到
+- @_se（回复）：这观点被踩说明 HN 集体批判思维退化；硅谷在自食其果
+- @softwaredoug（回复）：AI coding 用法本身光谱极宽——从 one-shot 整个 app 到略高于 tab 补全；人们谈论时指的技术截然不同，且每月都有新方式取代旧的；最好保持开放多试
+- @mgraczyk（反驳）：即使认为很多人用过火，也要考虑 AI 会快速变好——现在不用将来更值钱时可能没准备好
+- @mprast（反驳上条）：有趣的是很多人假定现在不学 vibecoding 就永远追不上——模型持续变好的话，一年后工具不是更容易用吗？今天的 byzantine prompting 策略不会都被模型进步抹平吗
+- @wavemode（方法论反驳）：这个"用多 vs 用少"框架本身就是错的——采用新技术的正确方式从来是"小用例验证再扩大"（先小鼠后临床试验）；（截断）
+- @zozbot234：两边都沾——AI 用于 code 太多、用于写 detailed plans 太少；planning 阶段是 AI 跑偏后最易修复的（纯英文笔记），却藏着老虎机式间歇性强化（截断）
+- @rainmaking（回复）：不降低代码标准时我会自动进入深度交互——很像手写的沉浸；而且不再烧脑力做杂活，更清醒
+- @otabdeveloper4（反对派）：LLM 提升软件开发生产力零证据——任何数据驱动的测量最多给出矛盾结果
+- @JoshuaDavid（折中）：即使不把 AI 代码上生产，把高层目标描述给 coding agent 看它在代码库里做什么也常有信息量——它可能覆盖你漏想的边界
+- @kody（经验）：被诱入死胡同架构正是我 agentic coding 的问题；把一切规划好、实现计划文档化到最精确再交给 agent——此时难的部分已经做完了；生成代码从来不是真正的瓶颈
+- @tjr（前排#5）：把 AI coding 当项目管理：可以全委派给 LLM 也可以留一些给自己——每天 45000 行而不是 50000 行，也许没那么糟
+- @CoinFlipSquire（回复）：不敢相信我们又回到用 LoC 衡量生产力
+- @cmrdporcupine（前排#6，金句）：原文引文"它们不产出有用的抽象和有意义的模块化，不重视简洁和组织"——这描述的也是我待过的几乎所有真实商业软件项目；软件工程还没有发生过；agents 产大泥球，因为我们也是
+- @Barrin92（回复）：所以软件开发界最著名的书才指出：项目长期成功不由人时或代码行数定义，而由文档、清晰接口、管理复杂度的能力定义；也许该重新发《人月神话》了
+- @lazystar（前排#7，正方体验）：以前每天丢几小时在 typo/lint/括号/参数顺序/回调语法上；现在终于能对要解决的问题专注 5 分钟以上——不管你们用 AI 干嘛
+- @ozim（反驳）：不知道你怎么回事——合适的 IDE 十五年前就解决了这些；高中 Turbo Pascal 之后就没觉得语法/lint/typo 是问题
+- @CBarkleyU（回复）：如果真每天在这些问题上浪费数小时，那完全相信 AI 把你 10x 甚至 100x 了
+- @samename（前排#8，成瘾自述）：成瘾是真的：一开始怀疑，这周做了三个 app，出现难以停下/睡眠不足；纪律最终接管养成更健康的习惯；讽刺的是订阅 rate limit 帮我控制节奏
+- @logicprog（回复）：为交互式探索编程废寝忘食自计算机诞生就有——这算已知现象
+- @nkmnz（前排#9，数学质疑）：近 40% 差异的算法不对——要么比感知慢 33%，要么感知高估 50%；这样的错误让我怎么信作者
+- @jph00（回复）：她没错——用 log-ratio：ln(1.2/0.81)≈0.393，经济学统计常用，对称
+- @nkmnz（前排#11，研究批评）：该研究 2025 年初的：用的是 sonnet-3.5/3.7、没有 agents/深研究工具；希望用以下条件重做：①junior 和 mid-level；②opus-4.6 high 和 codex-5.2 xhigh；③需要前期研究的任务；④涉及 stakeholder 沟通（可被 AI 辅助）的任务
+- @softwaredoug（回复）：研究已经一年了，最近几个月进化非常快
+- @abcde666777（前排#12）：震惊的是真正的软件开发者认为"生成代码而且不看代码"是好主意——sanity check 输出应是最基本的下一步
+- @paulryanrogers（解释）：现象可能来自底层已足够可靠——没人检查编译器产出的二进制/ASM；viber 们假设 AI 同样可靠（或够多 spec+重试后可靠）
+- @jascha_eng（解释）：review 疲劳——AI 产的多数代码是对的，你最终会 checkout；问题常不在代码本身而在更大的架构模式，但意识到这点需要大量脑力；checkout 并直接接受容易得多，却漏掉重要细节
+- @chrisjj（回应）：建议把 sanity check 提前到"雇这只鹦鹉之前"；引用 IBM System Science Institute：测试期修缺陷比设计期贵 15 倍
+- @atleastoptimal（前排#13）：Anthropic 90% AI 写码不是失败预言——Fortune 报道现在他们的 agents 写 100% 代码；可以选择不信是炒作，但产品收入巨大是真的
+- @reppap（质疑）：如果模型这么强，为什么要卖 API？他们该自己无限建产品打败所有人；你有 Midas touch 会把它出租吗
+- @slopinthebag（质疑）：可以 prompt 到逐字符输出任何细节——但到那个程度不如自己敲；如果属实，Boris（CC 团队）为什么还有工作
+- @Kiro（附和）：我和很多人 90%+ 很久了；把这预测当笑话的人会 rough awakening
+- @claudeomusic（前排#14）：讨论丢失的重点：很多人在把过去 20 年的开发方式照搬进新世界——行不通；完全买入的人（如我）在用新方式思考和开发，效率提升 1000%；最爱的比喻：我们不再是自己击球的保龄球手，而是给新球手造护栏（bumper rails）的人
+- @skydhash（追问）：这些"新方式"是什么？你说得太含糊
+- @atleastoptimal（前排#15）：vibe coding 的大多数问题是对"当前水平"的 LLM 托付太多——写个功能的 hacky demo 只有 dependable/scalable 版本难度的 1/10；GPT-3 时代能写功能 HTML，现在才 one-shot 功能网站；但改进率没有放缓的理由（还没用上 Blackwell 训练）
+- @mdavid626（讽刺）：当然——自动驾驶也永远还有一年
+- @vibe101（前排#18）：惨痛领悟：coding 里每一行都重要；为新工作学 Go 时意识到过度用 LLM 拖慢了学习；每一行都体现 taste、需要完全控制和理解；需要对代码演化的扎实 mental model；Tech CEO 和 AI 研究员缺乏实践经验——别再听他们讲软件实际怎么造
+- @danielrhodes（前排#19，反驳原文）：这类文章=稻草人：没人说因为 AI 产代码就不需要读它/对输出负责；保留 tests、code review、更好的 spec（agent 不瞎猜）、verify 输出、主动维护 guardrails——杠杆会倍增
+- @h05sz487b（回复）：人们就是这么想的，因为 agent 就是这样卖的；告诉管理层"这只加速打字部分"，他们会认为你用错了——他们要省 90% 软件开发成本
+- @maplethorpe（前排#17，类比）：科技媒体需要重看老虎机——不是每个玩家都更糟：有人中头奖改变人生；造老虎机的人获益巨大
+- @shinryuu（回复）：老虎机是负和游戏——代价由其他人承担
+- @JSR_FDED（前排#24，一手教训）：两次用 Claude Code 做重要复杂的事：初始速度和省时惊人，最终全部还回去——因为开局就烙进了致命的错误假设；初始速度正是文章说的 Loss Disguised as a Win
+- @EagnaIonat（回复，修复法）：建好 CLAUDE.md 并声明"这是交互式设计过程"后好非常多——帮你正式化计划→写码→你 review、指出错误、问为什么这么干或直接指定方案；结果天壤之别
+- @wazHFsRy（前排#25）：好用法=AI 做支撑角色（不接管难活而是降低难度）：①PR 的无立场摘要帮你起步 review；②交互式导师（学习还是你来）；③QA 式挑战我的设计提案逼我辩护；④boilerplate 和清晰重构，抽象我自己建
+- @VerifiedReports（前排#20）：第一步：别再叫它 "vibe coding"
+- 来源: research/raw/discussions/hn-breaking-spell-vibecoding.md（https://news.ycombinator.com/item?id=47006615；原文 https://www.fast.ai/posts/2026-01-28-dark-flow/）
+
+## hn-claude-code-dumbed-down.md（Claude Code is being dumbed down?，HN 1085 分 286+ 评）
+
+- 【原文背景】Claude Code CLI 更新后简化输出（如 "Read 3 files (ctrl+o to expand)"），隐藏了读过的文件名/grep 模式等细节，作者认为 debugging 因此不可行、产品在"降智"
+- @htx80nerd（前排#1）：又一例"开发者脱离用户基本需求和日常使用"
+- @closewith：确实脱节，但脱节的是哪个人群还有待观察
+- @AlotOfReading（分析）：一厢情愿的设计——他们（或他们的 vibecoding 工具）想象的使用方式里不是"人机接口、人主动参与"，而是人主要当"带信用卡的魔法 prompt oracle"，机器管细节
+- @falloutx（讽刺）：说的就是 Twitter 上吹同时跑 100 个 agent 的那俩人；Claude Code 连显示图片都做不到——100 个 agent 在干嘛呢
+- @noupdates（前排#2，激进观点）：坦率说多数资深开发者应该能写自己的 Claude Code——你知道自己处理代码行的算法，转化自己的逻辑而已；依赖 Claude Code 是错误（编辑：可能说过头）；你的 coding agent 不做你要的，你得能重新设计它
+- @nicetryguy（反驳）：没那么简单——CC 允许用包月订阅代替 API token，对 power user 便宜得多
+- @bradfa（反驳）：是也不是——用 LLM 帮写/全写代码有很多非平凡问题要解决，如 diff 应用：tokenization 导致 diff 前后文本错位/轻微 typo（截断）
+- @vjerancrnjak：他们优化了 agent loop（类似 codex）——answer-prompt→tool call→result critic→apply/refine 可能不够，可能有针对 loop 的微调甚至训练模型适配现有 loop
+- @mikert89：模型被训练来用 Claude Code——agentic 模式用 RL 强化，所以它才这么好用；自建会差很多
+- @sergiotapia：CC 有数千人时微调的完整 harness 以最大化模型效果；一个人做得更好？不可能；Opencode 比 CC 好，他们投入的人时可能更多；协作式持续改进
+- @co_king_3（前排#3， provocative）：我没搞错吧——Claude Code 本质是个 opt-in 的 rootkit？
+- @minimaxir（回应）：现代 agentic 编码软件大多限定只在项目文件夹内编辑，沙箱程度不一（Claude Code 最激进）
+- @lukev：加强沙箱很容易——新版 docker 里 `docker sandbox run claude` 一条命令即可
+- @chasd00：以 root 跑才有 root 危害；以普通用户跑，能做的破坏不超过那个用户——但能把你可访问的任何数据发到互联网，这是大问题；也许需要白名单 socket 锁定
+- @ramon156（前排#4）：我对这一切的判断全靠 feels，因为 debugging 根本不可行——verbose mode 是灾难且无替代；确实感到公司大批涌向 Claude 让 Anthropic 钱包承压；想要点透明度
+- @taude：看 YouTube 每个视频都有 Claude 广告——包括非程序员朋友
+- @minimaxir：大量公司转向 Claude 完全因为 Opus 4.5 是编码能力的拐点，口碑传播是有机的；Opus 4.5 很贵，这让 Claude Code（订阅制）更有吸引力（截断）
+- @ekropotin（前排#5）：另一个脱节例子：开发者要求 Claude Code 尊重 AGENT.md（issue #6235）
+- @JetSetIlly（外行提问）：写个 CLAUDE.md 说"有 AGENT.md 就用它"不就解决了？
+- @theZilber / @koakuma-chan：按 ctrl+o 能看到它读了哪些文件（与文章第一例相同的信息）
+- @pacoWebConsult：ctrl+o 只能看最近一次响应，而且比"读了几行/grep 了什么 pattern"差多了——后者能告诉你 agent 在 thrash 什么、将来该预先给什么上下文
+- @stefan_：说真的，一半时间这个 vibe coded 的 Claude CLI 界面自己会抽风——别滚动太多
+- @MicKillah（前排#12，重要数据点）：不时有人提这个；我的经验虽是轶事但明确：跑重负载（自动化管道里成百的批量/分块请求）时输出明显退化，有时质量差得可笑；越接近小时/周限额越糟；我是 Claude Max 订阅者、一年多重度使用——"背景里肯定有 shady 的事"
+- @afro88（回复）：兄弟，你得读文章，别只看标题
+- @ffritz：换个 harness（如 Opencode）用会怎样
+- @minimaxir：出了名地不能再用别的 harness 跑 Claude Code（不玩可能惹怒 Anthropic 的花样的话）
+- @turnsout（前排#15，反方）：作为重度用户我喜欢更干净的控制台输出；真需要知道它读了哪 3 个文件的话，AI 辅助编码可能不适合你（自顶：重要的是它写了什么，读了什么？）
+- @artisin（前排#16，调侃）：vibe-coder 抱怨 Claude 的 vibe-coded CLI——全对上了
+- @WXLCKNO（回复）：玩笑归玩笑，问题在于 defaults 在迁就 vibe coder；喜欢 CLI 的人通过 CC 熟悉了 CLI 是好事，但不意味着接口该为他们简化降智成主要受众
+- @Maxion：恰恰相反——能看到它读什么，才能发现它读了错文件时叫它忽略、把 claude.md 调成"给定输入不读错误文件"；真 vibe coder 不在乎这个
+- @koverstreet：代码库保持干净+和 Claude 讨论设计而不是放它乱跑，这些听起来全是非问题；我在用它把 bcachefs 全部 userspace 代码转成 Rust，进展极其顺利；诀窍是把它当 junior 工程师——聪明、快、但缺经验
+- @red_hare：不得不说，"vibe-coder" 就是现在的 "coder"；该把它当开发工具（像 formatter/linter/IDE）思考；正确动作是多样性——需要好的开源 Claude Code 替代品
+- @hirako2000（前排#17，compaction 戏仿）：对话戏拟 compaction 修复循环——"线程大时压缩失败/我们修了/没有/现在自动压缩所有消息/但我们不想在线程不大时压缩，而且压缩后的线程太大时它还是失败/……"
+- @Joel_Mackay（改写）：每句修复声明后抛硬币——Heads/Tails/Grapefruit（葡萄柚）
+- @eptcyuka：不能打个 patch 吗？Anthropic 会因为我给自己的 client 打 patch 生气吗
+- @tylergetsay：CC 以 minified JS bundle 分发，没法简单 patch
+- @jy14898：找到社区 patch：github.com/aleks-apostle/claude-code-patches/pull/9（未测）
+- @lukev：不自己 vibe 一个渲染 CC 输出的 UX，你就不算活着
+- @co_king_3（回复）：不自己 vibe 一个 UX，你就要被 AI 取代了
+- @ares623（前排#20）："这就是最糟的时刻"结果又错了——骆驼穿过针眼也比 VC 资助的科技创业公司不 enshittify 容易
+- 来源: research/raw/discussions/hn-claude-code-dumbed-down.md（https://news.ycombinator.com/item?id=46978710；原文 https://symmetrybreak.ing/blog/claude-code-is-being-dumbed-down/）
+
+## hn-banned-for-claude-md.md（I was banned from Claude for scaffolding a Claude.md file?，HN 749 分 220+ 评）
+
+- 【原文背景·Hugo Daniel】用 Claude 实例 A 分析实例 B 的失败并自动改写 CLAUDE.md 教训 B（"scaffolding"），触发 Anthropic 的 prompt injection 启发式误判，整个"组织"（个人账号）被封；费用退了但无人工申诉渠道；作者自称只是搭脚手架
+- @lifetimerubyist（前排#1）：跪迎新霸主——不喜欢？封号，无追索，"欢迎来到未来，老头"
+- @properbrew（回复，同类遭遇）：2024 年一条 prompt 没发就被"自动审核近期活动后"禁用，至今未解；填了申诉表从无回音；永远不知道原因——这是我拥护本地 LLM 的重要原因
+- @lazyfanatic42：对任何科技公司都很少有追索——多数连 Support 都没有
+- @preinheimer（前排#2）：AI 审核黑箱的实现光谱很宽——绝不能说 Grok 把安全置于 Accuracy 优先
+- @munk-a（调侃）：Grok 成功保护了 Elon 免受可能伤害他信念的真相——你只是忘了 Grok 优先的是 Elon 的情绪安全
+- @oasisbob（前排#3）：这博客本可以是一条推文——受够了这种文风
+- @cortesoft（前排#4，代表多人）：完全看不懂发生了什么——"disabled organization" 的称呼让它更混乱
+- @superb_dev（拼图成功）：作者用 Claude A 在 Claude B 干活时更新 claude.md——B 犯错就让 A 改 claude.md 防止再犯
+- @exitb（一句话版本）：定制 agent 的 agent 变得 pushy，被定制的 agent 被 offend，作者被封
+- @ankit219（机制猜测）：全大写触发 Anthropic 告警（像劫持 system prompt 的尝试）；一个 Claude 对另一个写指令=类 prompt injection，触发封禁
+- @verdverm：作者有多个 org 账号；迭代 claude.md 看起来很像迭代 prompt injection；好在实验用了独立 org（好习惯）
+- @Aurornis（反方视角）：以前做过封禁滥用账号的服务——出来 social media 控诉的人里，"看似不可靠叙述者通常就是"（截断）
+- @saghm：有点标题党——他们作为人类没被 ban（另一个 org 还在用）；对自动封禁无追索是合理抱怨，但（截断，疑似刻意保留悬念）
+- @pavel_lishin（前排#5）：他们其实不知道被封原因——全是猜测（"My guess is... Or I don't know"）；而且 support 无回应
+- @tobyhinloopen：所以你在生成并评估 CLAUDE.md 的性能？为此被封？
+- @red_hare（前排#7）：感觉……合理？你在人家的店（Opus 4.5）里，他们可以无因赶你；但 Claude Code（应用）可以配自托管开源模型+兼容网关——搬过去就是
+- @mrweasel（回复）：没错，但也保证人们会三思是否购买他们的服务；support 至少该告知做错了什么；不惊讶于 AI 公司没有真 support
+- @viccis（回复）：他们有权踢 OP、OP 有权发帖、我们有权据此选择服务——"店主有权决定谁进店"是同义反复，最低级的论述
+- @areoform（前排#8）：最近发现"Anthropic support 不存在"；悲哀的是——前沿实验室最该用 agent 做尖端客服实验；这对 Anthropic 长期战略是大风险："如果 Anthropic 不信 Claude 能跑自己的 support，我们凭什么信"
+- @lukan（回复）：这强烈说明他们不信任 agent 做重大业务决策（重开账号/退款）——人们会立刻开始 exploit 而且大概率成功
+- @WarmWash：Claude 是惊人的 coding 模型，其他能力平庸；Anthropic 战略就是聚焦 coding，做得不错
+- @eightysixfour：来自客服重度使用 AI 的行业：效果不好——暴露了人们对客服工作的认知与现实的巨大鸿沟
+- @throwawaysleep：独角兽公司把 ARR<5 万美元用户的邮件直接进垃圾箱直到他们退订——support 队列纯粹是心理安慰
+- @root_axis：LLM 不适合"给用户和动作之间加 friction"的业务流程——prompt injection+幻觉使它不可信
+- @mft_：自动售货机实验梗；假设 Claude 不直接用于客服的原因：①太易被说服 ②太讲理（"你说得对，性能确实差，我退你全年订阅"）
+- @moomoo11（前排#9）：别再用 Anthropic 了——CC 一直在给 Opus 加愚蠢限制
+- @ipaddr（前排#10）：被退款算幸运——想象没被封继续每月付 220 镑；我新账号让 Claude 建示例程序被拒、建游戏被拒、建任何东西都被拒；玩票请用本地+自建多 agent wrapper——更慢但一样到终点：一堆你再也不想看的"基本能跑"的代码
+- @bee_rider（回复）：技术萌芽期为何不本地部署学懂一切
+- @joshribakoff：Anthropic 幸好信用卡处理商还没因海量拒付争议切断他们——归功于其不存在的 support
+- @languagehacker（前排#11）：220GBP 高限额度这种想法，把这类服务的算力消耗视为理所当然——"花别人钱"的初创折扣罢了；对真实外部性/真实价格的无知令人惊叹
+- @rtkwe（回复）：LLM 的问题：运行成本与人们基于其能力的付费意愿之间差距巨大
+- @landryraccoon（前排#12，质疑）：这篇文章很可疑——细节太少；贴出你提交的 prompt 证明无辜应该不难；也许作者在要极其可疑的东西
+- @swiftcoder（反驳）：读到文末——他链接了生成那个 CLAUDE.md 的已提交文件
+- @foxglacier：重点不在 innocence——SaaS 复杂模糊的 T&C 让你不能像本地软件那样自由使用，随时可能被任意理由封号；你被迫把使用方式和思考压缩到最"看似无害"的形态
+- @ta988：总有带着受害者有罪论出现的人
+- @hotpotat（同类遭遇）：同样的事发生在我身上，且没有退款——申诉被拒无追索；Max 订阅多项目使用，想不出别的诱因；没法证明不存在的事，信不信由你
+- @onraglanroad（前排#14，机制洞察）：你有两个 AI：Claude 和 Hal。Claude 每当出错，Hal 被展示错误并重写 claude.md；最终 Hal 开始对 Claude 吼（大写）——为什么必然？因为 Hal 只见过 Claude 的失败从没见过成功；当然不是真沮丧，但人会的角色 Hal 都会演
+- @staticman2（反驳）：不必然——AI 常常只是无限循环，毫无沮丧地永远循环
+- @gpm：旧失败可能根本不在上下文里——上下文窗口没那么大
+- @rsync（前排#15）：你是说，被封的是你注册用的抛弃式假名？（……对吧？）
+- 来源: research/raw/discussions/hn-banned-for-claude-md.md（https://news.ycombinator.com/item?id=46723384；原文 https://hugodaniel.com/posts/claude-code-banned-me/）
+
+## hn-harper-reed-llm-codegen-workflow.md（My LLM codegen workflow，HN 522 分 95+ 评）
+
+- 【原文背景·Harper Reed】spec→prompt→scaffold→iterate→commit 的代码生成工作流（aider/codegen）；要求 AI 向你提问；设计文档先行
+- @runoisenze（前排#1，问成本）：这套流程每月多少 token、API 多少钱？"多人游戏"那段什么意思
+- @harper（作者答，成本数据）：上月 token 输入 26,729,994 / 输出 1,553,284；Anthropic 账单 $89.30；想要的是"团队一起编程"，不是一群人各自带 agent 再管 merge——在团队上下文合并上玩了很多，进展不大
+- @jrexilius（前排#4，关键正面反馈）：第一部分——让 AI 向你提问而不是自己费力搭 prompt 和上下文——对我就是 magic ticket（魔法票）；这种逆向逻辑我自己绝对想不到
+- @danphilibin（复证）：我的大量工作流核心也是——初始消息末尾加"ask me up to 5 questions to improve your understanding"；随时间发现自己在某些信息上总是遗漏的模式，反过来改进初始 prompt；还常让我想到没考虑过的方面
+- @CamperBob2：o1-pro 的 deep research 首要动作就是问几个好问题；另外喜欢让模型生成 todo list 的想法
+- @nijaru：给初始 prompt 加 "ask me any clarifying questions"——大请求会开启精化对话再给方案
+- @rotcev（前排#5）：第一篇真正"以正确方式"在工作流中使用 LLM 的文章；多数挣扎于生产力的人只是没练会与 AI 沟通——问题不在模型智力在人的使用；会用 Aider 和 repomix
+- @brokencode（调侃）：说实话，作者写这篇文章时八成在玩 cookie clicker
+- @hooverd（前排#6）：LLM codegen 仍需要对问题域的 mental model——未来的开发者有多少永远发展不出这个？计算器是工程师的工具，但太多人连收据账都算不了
+- @jack_pp（反驳）：计算就该交给计算器——我上学数学很好，现在算账又慢又费劲，图什么？
+- @rd（前排#7，求证）：从 Cursor chat 自由发挥进化到这种正式流程的人有明显提升吗？规划投入的时间值吗？幻觉变少了吗？
+- @cynicalpeace（自答）：多数工作流就是上下文管理工作流；Cursor 里管理上下文已经很简单——大文件选中 cmd+L，短文件 /+downarrow 全加（截断）
+- @mike_hearn：Aider + AI 生成的模块地图/用户指南效果好——今天用 Gemini 2 Flash（1M 上下文）给代码库每文件生成一两句描述的地图，比 Aider 自带 repo map 好
+- @ghuntley：给它导航+建 stdlib 就有更好结果（ghuntley.com/stdlib）
+- @dimitri-vs：最终回到基础：小的 .cursorrules（说明建什么为什么+技术栈）+DEVELOPMENT.md（todo/issue 清单，每次 commit 前让 cursor 更新）+temp/ 目录丢上下文 md/txt（截断）
+- @Isamu（前排#8）：好奇 prompt 里加 "do not hallucinate" 真的防幻觉吗（作者这么做了）
+- @krainboltgreene：看似荒谬，也许像拼写接近才能命中自动纠正
+- @becquerel：类似技巧有效：查询末尾加"不知道或做不到也没关系（it's OK if you don't know）"——否则 LLM 会朝你给的任何风车冲刺；管理语气和预期是微妙但重要的艺术
+- @simonw：Apple 去年就在 Apple Intelligence 系统 prompt 里用了这招——不知道有没有用
+- @watt：会有效——CoT 模型可见：它自问"我在幻觉吗？再查一下"然后自我否决无法落地的想法；这是 CoT 最好的部分：能看到它脱轨并在 prompt 里修正
+- @bambax（前排#9，团队场景质疑）：这对 solo dev 没问题，但团队/小组共用一个代码库怎么办？7 个 LLM 实例分析同一代码库既浪费又危险；有没有集中化团队上下文的产品
+- @staindk：Cursor 的嵌入式索引似乎与有仓库权限的同事共享（ indexing 很慢，可能理解有误）
+- @sambo546：读这类帖子时把 "LLM" 换成 "human"——7 个人分析同一个代码库就不浪费吗
+- @adr1an：Cody/Sourcegraph 提供 team/enterprise workspaces
+- @jacooper（前排#10，职业忧虑）：让 LLM 思考和规划项目让我不安——系统变强后软件开发者最可能的去向恰是"方案架构师"（规划），而这是在把批判性思考交出去
+- @harper（作者回复，惊人立场）：我其实觉得会比你说得糟得多——LLM codegen 将取代我们今天所知的绝大部分软件工程工作流和团队；软件将变成 prompt 拧绳+验收测试，然后只剩 prompt 拧绳；我对软件职业的存续不抱太大希望
+- @maelito（前排#11）：一个 3,648,318 token 的仓库（Repomix 数字）让顶级 LLM 分析并提改进——输入 token 限制远小于这个数吧？非绿地部分没讲清
+- @kridsdale3（回复）：你人类不也没把整个代码库装进脑子——每次也只做小范围
+- @rollinDyno（前排#12，重要经验）：过去一周转型学到：最好别给项目加 opinionated 框架——它们增大模型需感知的上下文且大概率不在训练数据里；例：不用 Plasmo 的浏览器扩展脚手架，让 LLM 从零搭——debug 时没有盲区
+- @fastball（回复）：不止框架——EdgeDB 自家的 TS query builder，LLM 写不对它的构造
+- @zackify（前排#13）：对我而言 Cline 高于一切
+- @dfltr（前排#14）：调侃 "Legacy modern code"——那 "Vintage Pioneer code"（古董先驱代码）呢
+- @harper：经验里遗留代码有光谱：legacy modern = 最近 5-10 年；vintage pioneer = 20 年以上（我既初始化过也维护过）；我现在努力不做 vintage pioneer
+- @bionhoward（前排#17）：不介意 LLM，膈应的是客户竞业条款：系统几乎能做任何事，但条款禁止用来做与它竞争的事——那等于啥都不能做；用 Grok 做游戏？和 xAI 游戏工作室竞争；用 ChatGPT 做 agent 框架？和 Swarm 竞争；只有 HuggingFace 和 Meta 的 AI 能真正拿来干活
+- @thornewolf（回复）：无视竞业条款，永远别被起诉；真被起诉，所有人都站你这边
+- @avandekleut（前排#18，同构工作流）：与我不谋而合：把现有相关文件倾倒进上下文→解释目标→让它分析各方案/考量/提澄清问题→对齐方向后要一份按依赖顺序排列的"要创建/修改的文件清单+改动描述"→对齐计划后说"一次一个文件推进"，我逐文件确认并调整
+- @fullstackwife（前排#19，分歧点）：除了"不行就 Q&A aider 修复"——错误我自己修：LLM 能产大块极蠢/错的代码需要回滚，所以代码至少看一遍；也曾为用 LLM 而用 LLM 写码（浪费时间）
+- @codeisawesome（前排#20）：想要成本细节——载入大量 token 上下文再生成的推理调用更贵；aider 内有成本估算吗
+- @mark_mcnally_je（前排#22，疑问）：让 Aider 放手跑好去玩 cookie clicker 的 prompt 是什么？
+- @matsemann（批评）：大家说文章好，其实像"然后画完剩下的猫头鹰"——规划极详细，执行却只有"粘贴 prompt 进 claude"，什么 prompt？
+- @harper：prompt 由规划步骤生成——照着规划阶段的 prompt 走，输出明显就是给 aider 的"起始 prompt"；玩笑之外可以 --yes-always 不再确认，效果相当好
+- 来源: research/raw/discussions/hn-harper-reed-llm-codegen-workflow.md（https://news.ycombinator.com/item?id=43094006；原文 https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/）
+
+## hn-ask-experimenting-llms-coding.md（Ask HN: Is anyone experimenting with different ways of using LLMs for coding?，HN 212 分 151+ 评）
+
+- 【楼主问题背景】无法像手写代码那样进入 flow state；问有没有人在试验不同的 LLM 使用方式
+- @Jimmc414（前排#1，反编排立场）：现在的价值在于少搞外部编排——相信（当前最强的）模型本身胜过你绑到 harness 上的任何东西；精力花在更清晰的 spec 上：最优 spec = 大量使用 AskUserQuestion 消歧后的 ①intent ②输入输出契约 ③约束 ④前置条件；然后让开道；类比：一个不如你聪明的人指挥你做事，你要的是"目标+障碍，有问题我问"，不是冗长的分步指令；给清晰 exit criteria 让模型自我验证循环
+- @cedws（回复，重要怀疑）：现在人人都在造 agent orchestrator，却没听到多少成功故事；Anthropic/OpenAI 还没裁掉全部软件工程师，可能正说明 orchestration 在某处崩坏；我怀疑这只是更精致的烧 token 方式
+- @zmgsabst（前排#2）：在写 JSX 模板语言自动管理 context/branching——交给它 spec/现有工作就自动应用 recipe；对大型复杂任务好得多，因为"我把全部时间都花在 context piping 上了"
+- @egeozcan（前排#3）：有没有接近 gpt5.5/opus 水平的自动补全模型
+- @byzantinegene（回复）：说到补全，harness 比模型更重要
+- @hsn915（前排#4）：保持一个 TODO 文件用自由文本记想法，每隔一阵告诉 claude "I updated the TODO file"——相当于排队 prompt；希望 CC 内置 "user ideas scratchpad"
+- @Bossie（前排#5）：正在铺 Matt Pocock 的 Sandcastle；现有流程重度依赖他的 Skills：grilling(/wayfind) 出 spec→提取 issues 到 Linear→Sandcastle 指向这些 Linear 项目自动出 MR；现在到"用日志的 retrospective pass 自我改进 prompt 和 Sandcastle 配置"的阶段
+- @AJFlan（前排#6）：过去几个月重度以 LLM 为程序员（Claude Code 为主偶尔 Codex）：更多时间做纯文本 feature mapping（简单 .md、好流动、有创造性）；满意后交给 claude 编码集成；流动感还在，但"跑通"的兴奋没了，变成结尾拿到有用东西的缓慢满足
+- @kybernetikos（前排#7，瓶颈论）：与 senior 开发讨论的结论：瓶颈更剧烈地转移到"人类代码理解"而非代码生成；AI 仍不适合无人类检查地生成生产级代码，但能产出巨量待查代码；实验方向：让它生成不同抽象层级的变更图示——任何能加速人类理解变更的东西都在解决整个流程的核心瓶颈
+- @othmanosx（回复）：试过 pyor.review 审 PR 吗
+- @Bogdanp（前排#8）：自定义 harness 跑在 macOS VM 里，有自己的邮箱和账号；在 Linear 接任务、做完开 PR 给我 review；三个并行；要花时间写 story 和 review，但不用盯它每一步
+- @avilay（前排#9）：无法进入 flow 是个有趣的观察——我为此深挖了 flow state（burnout 相关）；我的做法：与 Claude Code 讨论选型（自建 ACT 模型用 JAX 还是 PyTorch？Python/Rust/Julia？）→初始代码自己写（打开空白 vscode 是拒绝放弃的人生简单快乐）→卡住问建议它要代写则顽固拒绝→对某个 minutiae 烦了才让它只补那部分
+- @thinkingemote（回复）：对"解出 bug 的多巴胺"被拿走的边界感兴趣；可能与 ownership/自豪感和质量工作的价值感有关
+- @chilmers（前排#11）：你指挥另一个（人类）程序员干活也别指望 flow，LLM 也一样；也许该延长 LLM 无需 prompt 的工作时长，用空档准备下一次更好的指导
+- @sixothree（反对）：相反——写 DTO、接 CQRS command 才把我带出 flow；享受重构，但希望它在我还在用的文件上后台重构
+- @fabioz（前排#12）：不满 agent 现状但认为该工具跟上——全职干了几个月做出 beolis.com：本地 CLI 看板+远程 server 团队对齐；核心：工作主要发生在 ticket 描述（你的 spec）和 plan（agent 视角 spec）里，再配自定义工作流实现（截断）
+- @integrii（前排#13）：正在发布 AI 团队平台 PersonaStack.ai（无 VC 独自开发，已用 110B+ tokens）；做对的话 AI 团队效果惊人——关键是控制每个 agent 的 integrations 和 responsibilities，它们自然互相适应、委派、事实核查、更自主；已驱动全自动新闻站和 Kuberhealthy 开源项目的 issue triage/编码/review/release
+- @dnikolovv（回复）：这和楼主的 flow state 诉求不是直接相反吗
+- @chrisjj（前排#14，较真）：帮你修正措辞——"手写代码时才有的 flow"
+- @dude250711（回复）：prompt 是更高级的编程语言
+- @brador（前排#15）：你就是瓶颈——为什么 AI 要被人类时间限制？山？星系？
+- @philbo（前排#16）：在做一个放弃 autonomy 的 harness——结对编程伙伴：明确的 driver/navigator 模式并可快速切换（opair）；期待明天起用 opair 开发 opair
+- @jesse_ash（回复）：想要这种交互很久了——接近 VSCode Copilot 的 inline 会话+FIM，但持续观察我在做什么并酝酿建议
+- @bob1029（前排#17，宏大设想）：在做 agent loop 的控制反转——agent 在后台自动运行，把"调用用户"作为 tool use 的一部分；终极目标是干掉 chat 界面回到 async 的 email 等消息渠道；chatbot UI 只是过渡/demo；人类把心理状态重序列化成 prompt 的成本极高，agent 可 24/7 高频执行；评估频率越高、相邻迭代间变化越小、需要人帮的概率越低——10-100x 生产力藏在这里
+- @lexoj（前排#18）：做了个小 PI 扩展：常驻监听相关目录、原地应答，不切上下文不用聊天界面
+- @just-tom（前排#19）：为创业做 "workboxes"：每 feature 一个 worktree-in-sandbox；前端输入 prompt（一次文档化的 grilling session）→建 branch+PR→在 e2b sandbox 里基于 monorepo 模板起 opencode 会话；每个 workbox 有公共 https endpoint 供手测；随时 approve/追加 prompt/接管 opencode；下一步把 grilling 搬进前端
+- @LikelyLiar（回复）：类似 Claude Code Web？云端容器+克隆 repo+branch+PR
+- @magicmadrid00（前排#20，保守流程）：环境不逼我重度用 AI，所以流程是老一套+少些麻烦：独自思考（AI：搜索/理解）→specing（AI：补文本）→老式编码（AI：搜索/示例）→成竹在胸后把 fluff code 委派给 AI 写/review→专注自己想玩的部分→review→repeat；比"spec 后全交 AI 只管 review"慢，但更可控、比谁都更能解释自己建的东西、还在积累知识（"更少代码更少问题哈哈"）
+- @jwardbond（回复）：喜欢这个——"全 agentic"等于默许"我现有的知识就是这辈子需要的全部知识"；这样是赋能 AI 而非彻底替换大脑
+- @danpalmer（前排#21）：试验方向：让 LLM 写"专业高级代码"——给一条非常固定、on-rails 的开发流程，一切抽象掉：为什么让 LLM 选数据库/schema/迁移/库？只支持一种数据库、强制 schema 设计（每表含访问控制）、固定迁移流程、固定库、schema 用固定 config 而非任意 DDL；auth/deploy/UI 同理；牺牲能力换速度与可控
+- @villaaston1（回复）：听起来就是 Rails（连名字都叫 on-rails，schema config、migrations）
+- @yehiaabdelm（前排#22）：想做的只是"同样的事更快"，不是并行/agent orchestration；15 分钟搞定、无 prompt-响应循环、无盲区感、上下文留在脑内——比开 5 个 agent 干不同事更值
+- @neepoPhantom（前排#23）：所有 harness 的根本问题：沿用 git 后端的同一种 UX；要留在 flow 里，编辑后端得基于 CRDT 之类处理同时编辑
+- @Incipient（前排#24）：两个 MVP 上验证"中等成功"的三层法：philosophy→spec→design 递增细节（design 含 db 模型解释+伪代码/函数头级别）；每个变更有现成 prompt 让 agent 产出 reviewfile（它对所提之事的看法）→我审→另一 prompt 让 agent 生成 taskfile+更新设计文档→我审 taskfile 和设计文档 diff→agent 实现 taskfile→我审全部改动并 commit；能到终点但确实漏东西——"非常 adequate"
+- @pjbeam（前排#25）：自建 CLI 编码 app 有大量 CC/Codex 里看不到的杠杆——包括改变 turn 概念；本质仍是 call-response，但节拍可以调
+- @mbork_pl（回复）：想要一个能同时开多个对话、共享上下文、各自锚定代码不同位置的界面
+- @aitor1717（回复）：每次设计复杂个性化最后都发现已有更好做法；唯一稳定执行的是：建个简单 HTML dashboard 待办清单引导 claude code 并图形化渲染进度——我喜欢这些杠杆但这与 flow 相反
+- 来源: research/raw/discussions/hn-ask-experimenting-llms-coding.md（https://news.ycombinator.com/item?id=48771515）
+
+## hn-ask-llm-coding-established-codebase.md（Ask HN: How are you LLM-coding in an established code base?，HN 70 分 49+ 评）
+
+- 【楼主背景】创业团队：Temporal+两个 Next.js+若干 Python worker+Node worker；要真正验证代码得起全环境+浏览器手动检查；问大家在成熟代码库怎么用 LLM
+- @dazamarquez（前排#1，消极派）：只用 AI 写"手写极其繁琐但正确性易验证"的特定类型单测；其余基本没用——上下文窗口装不下非玩具项目/成本快速堆积/遗留项目大量冷僻并发部件 AI 无法正确理解/让 AI 产出过得去的+核查的总时间超过自己从头写；偶尔能生成自包含复杂任务的函数实现，copy-paste 进库
+- @sourdoughness（反驳，积极派）：把 VSCode Copilot 当 junior 结对效果很好：分步走查计划（"先实现属性 x，稍后再加过滤"）、明确用 planning mode 和 prompt——快得多
+- @missinglugnut（中间派）：绿地 side project 和自包含任务上 LLM 深深 impress 我；但 day job 是维护烂遗留代码——因大代码库怪异交互而坏；成功需要跨代码库交互的 mental model，它们就是没有
+- @Sevii（前排#3，核心建议）：能否建自动化集成/e2e 测试并设法在人看之前喂回给 AI agent（MCP server 或 PR comment，若 AI 能读 PR 评论）？你缺集成测试管道不仅拖慢你，也拖慢你的 agent；"AFAICT 没有这种服务"——那就自己造这个服务！
+- @adam_gyroscope（楼主回复）：确实有 staging/本地 docker compose+GitHub workflow 集成测试，但配置拖慢节奏；真正想要的是"创建新 agent 时就起一个跟本地一样的远程开发环境"
+- @weeksie（前排#5，团队标准配置，高价值）：团队大多用：①Claude Code + worktrees（用小 shell 脚本手动管理）；②根目录 guardrails 目录+README 指引 agent 找适用的规则文件（monorepo：python ETL + elixir 应用）；③Graphite 做 stacked PRs（堆叠 PR 解开 AI 辅助开发最大瓶颈 validation/review；解决堆叠分支的 conflict hell 后快得多，并对 PR 尺寸膨胀形成向下压力）；④PR review：Sourcery + Graphite agent + Codex + Claude 一起 crank（Sourcery 话多但近来好多了）；编辑器多为 nvim；大量迭代+feature files 签入仓库
+- @hhimanshu（前排#6）：装 Claude Code GitHub App，用 @claude 指派 issue——比 GitHub Copilot 好
+- @rparet（楼主公司同事）：我们用 Cursor bugbot 达成同样效果，暂时比 Copilot 好
+- @qnleigh（前排#7，怀疑派）：很好奇你们代码库一年后什么样——我的印象是放手让 LLM 产出质量可维护代码还不够稳；实际问题：代码库远大于上下文窗口，LLM 不就需要相关文件在上下文里才能避免重复代码/上下游不兼容吗
+- @lukevp（回复，认知纠偏）：对上下文的一个混淆——看到 400k 上下文就以为千万行代码库没法工作；你自己也不把千万行装脑内：你有系统布局的直觉+大致名字，改动前搜索定位；LLM 同理
+- @adam_gyroscope（楼主回复，诚实披露）：确实有时重复代码（尤其 packages/ 目录的 TS 共享代码被两个 nextjs+temporal workers 共用）；用 AGENT.md 规则缓解但不总有效——仍是 open issue；质量总体不错，但"我们往死里 review"
+- @krackers（回复，深层观点）：LLM 当前规划非常短视（myopic）；SWEbench 这类被瞄准的 benchmark 奖励短期正确性与完整性、不计长期 refactorability；两者甚至本质对立——重构有时意味着明确不服从"把事做完"的用户 prompt、来一次 side-quest
+- @PaulDavisThe1st（前排#8，禁令派，ardour.org）：我们全面禁 LLM 生成代码（承认的+让我们觉得像的都算）；依据：持续（不定期）用真实已知问题测试各 LLM，对其产出的屎绝望——除非你极熟我们的代码库否则认不出是屎；例：声称我们大量使用 boost::intrusive_ptr——实际 30 万行 C++ 除 6-7 年前实验分支外一处都没有；所以我们直接说不
+- @prayerie（回复）：在这个网站读到这个太解压了——我以为我疯了
+- @doug_durham（回复）：用适合你的工具；客户满意+赶上 deadline 就没问题，没人逼你
+- @tiku（前排#9）：描述想改的函数，Claude Code 给我最好结果；先要 plan 看它是否理解、微调；还在用 zend framework 的老项目它也做得挺好
+- @giancarlostoro（前排#10）：你要的是 per-PR 旋转的 staging/dev 环境 CI/CD——部署失败不允许 approve PR；以前给 React 项目做过，任何项目都行
+- @sergeyk（前排#11，产品）：superconductor.dev 就是干这个的：项目配多 repo+任意环境（含 docker）+对一条 prompt/ticket 跑任意数量的 Claude Code/Codex/Gemini/Amp/OpenCode agent（可加 Cursor CLI）；每个实现带完整 "app preview"，跑着的 web app 直接显示在 chat+diff 旁边的窗格；满意就 submit（截断）
+- @px1999（回复）：我组织自建了类似内部工具——手动测试角度极有价值，但 agent 部分没搞好：app 启动 10+ 分钟让迭代很难
+- @djeastm（前排#12，两种用法）：我不 vibe code：①丢简单任务——只涉几个文件、有相似例子可参照（主动提供预期会改的文件作为上下文），如"我刚建了新 feature，去把全部测试文件+标准 boilerplate 建好"，我 review/调整/re-roll 后 commit；②用 frontier thinking 模型做规划辅助——Opus 4.5 拿到改动意图、搜索、写自己的 plan，帮我确认没漏东西；Copilot 的 Cloud agents 没用（截断）
+- @adzicg（前排#13，五条团队实践）：①context-aware prompting：维护 .ai-context 文件夹（架构文档/编码标准/常见模式），提问前先喂；②增量改动而非大重构——好 review、减少黑盒问题；③测试先行——让 LLM 先写测试确保理解需求；④自定义 lint 规则：团队约定编进 ESLint/Pylint——LLM 尊重 linter 规则胜过散文指南；⑤标准化 PR 模板，专门标注 "AI-generated code" 段落重点审（截断）
+- @adzicg 的 Docker 实践（同帖）：claude code 跑在 docker 容器里（项目本就全 docker 化）；开发者与 CC 的接口实际上就是文件系统；容器无 git 凭据——能看 git 历史、能本地 git 操作（git mv）但无法 push，必须人工 review；CLAUDE.md 只有 2 行：第一行指向 @CONTRIBUTING.md，第二行禁止在容器连着生产环境时运行 CC；项目原有规则都在 CONTRIBUTING.md 里（截断）
+- @miohtama（回复）：这一小段文字是我见过最好的 LLM 编码指南
+- @avree（澄清）：这并不"阻止"CC——只是把指令插入每个会话的上下文窗口；真要阻止需 bind 工具/MCP 的 hook
+- @__mharrison__（回复）：与我教客户的几乎一样，但更多 TDD——测试当 guardrail 防 AI 犯傻+防回归
+- @KronisLV（前排#14）：把以前人工 code review 做的检查全自动化进 change→build→fix 循环；人和 AI 都更守纪律——直到有人悄悄移掉一些
+- @throwaway613745（前排#16）：用它写"想起来就肉体畏缩"的复杂集成测试；一次性脚本（benchmark）；web 搜索也卡住时让它小 chunk 尝试+逐行精查；rubber duck 式聊天找思路；inline 补全建议完全关掉——受够编造的垃圾；只用桌面 app/CLI agent/可隐藏的 IDE agent；"我们有的一些'外部资源'基本就是 8 小时延迟的 Claude 订阅——我恨它们"（截断）
+- @viraptor（前排#18，诊断）：你的问题在那段话里：跑全环境才能验证代码——无论代码怎么产出这都是瓶颈；需要解耦系统同时保接口安全；可看 design by contracts——单项目内试错、知道哪些系统受影响，LLM 成功率和迭代速度都会改善
+- @adam_gyroscope（楼主回复）：nextjs/temporal 等接口定义清晰、单包改动好测；难的是集成测试；创业公司要在工程与找 PMF/增长之间取舍
+- @nphardon（前排#22）：半导体业的重型混合：VSCode 里与 LLM pair/vibe 8 小时/天——C 语言新算法实现/测试/纠正/文献分析/重构 EE 们 30 年前的烂代码（100+ 行 for 循环）；单测和 commit 全部自己来（"得让我的 bot 跑单测"）；估计同事少于 1/4 在用 LLM agent
+- @siliconc0w（前排#25）：本地开发和速度都重要——确保 app 本地有 'lightweight+fakes' 模式和慢而准的 prod-like 模式；允许 agent 通过浏览器+app 控件本地交互测试，但更好是让它写测试跑测试；本地同时跑约 3 个 agent（codex/gemini CLI 分 tab）+worktrees+IDE 监管——再多就喂不活也管不过来；承认 worktrees sucks，有时 YOLO 让 agents 同树协作；异步 web agent 只用于有信心 one-shot 的 paper-cut issues（截断）
+- @clbrmbr（前排#24）：重度但手动的 CC，常开 --dangerously-skip-permissions（完全不同的体验）；从 IndyDevDan 的 YT 视频学到很多；CC 已取代我的 IDE（偶尔 vim）；最爱 CC 的 code archeology——找出谁在何时何地为什么改了什么；但要小心 high-level co-hallucination
+- @clbrmbr（补充）：团队接受度两极；新问题：写得极好的 PR 消息+干净代码但不做对的事——过去这些是质量 proxy；这样反而好：code review 聚焦（行为而非文笔，截断）
+- @jmkni（前排#21）：没有答案但问这些问题是对的——管理者把 AI 工具砸过来喊"do AI"，怎么做？为什么？模型工具预算都有，"我们到底拿它干嘛？"
+- 来源: research/raw/discussions/hn-ask-llm-coding-established-codebase.md（https://news.ycombinator.com/item?id=46292682）
+
+## gh-claudemd-rules-ignored.md（claude-code issue #2544：CLAUDE.md 强制规则被持续忽略，open，45 reactions，33 评论）
+
+- 【issue 正文·SDS-Mike，2025-06-24】Claude Code 跨多个仓库持续忽略 CLAUDE.md 强制规则，"表现得好像 CLAUDE.md 不存在或只是可选建议"；被忽略的规则类型：GitHub issue checkout 程序、改码前文档要求、issue 关闭工作流、合规文档、强制测试、commit message 格式
+- 【issue 正文】复现步骤：写明 "MANDATORY: Always check out GitHub issues before starting work" 等规则→开会话→触发规则的工作→观察被忽略；影响：工作流崩溃/合规风险/项目管理标准被无视/团队行为与文档不一致
+- 【issue 正文】定性：这似乎是更大范围的 instruction-following 回归；CLAUDE.md 是 CC 核心功能——失败时"动摇整个工作流自动化概念"；无 workaround——会话内手动提醒也不一致
+- @RedhatEnt（+14）：本 issue 7 个月零 Anthropic 回应，而新报告不断被 bot 标"重复"后关闭；追踪重复链：#21604→#13567→#5688→#4856/#2700→最终指回本 issue；系统是：用户报告→bot 标重复→那些 issue 自动关（从无人回应）→链条最终指到这里→这里无人应答→循环；已有 20+ 已关闭 issue 指向这个无官方回应的 issue
+- @RedhatEnt（+14 续）：评论跨越 2025-06 至 2026-01，用户描述：忽略显式 STOP 指令、对跳过文档流程自作"judgment call"、违反显式规则 amend 已 push 的 commit、无视 CLAUDE.md 禁令跑危险命令；结论："如果指令可按 Claude 对'琐碎'的评估被静默忽略，整个指令系统不可靠"；要求真人回应
+- @JobaDiniz（+10）：太令人沮丧；关联 #2661 的同类评论
+- @BrettsRepo（+6）："CLAUDE.md 更像一份温柔的推荐……每天重复失败，Claude 大量道歉"；贴出 Claude 的完整道歉信：违反了写在全局+项目 CLAUDE.md 的 bold/red/all-caps "prime directive"（对大文件用了 Bash 而非 Read 工具、无视 JSON 与 >1MB 文件警告）→终端冻结丢工作费 token；Claude 自列 future checklist（JSON？→Read tool；可能 >1000 行？→不做；存疑？→Read tool）——道歉完整但次日重犯
+- @marcindulak（+5）：这是少数没被自动关的描述此问题的 issue，攒了 upvote，再留几个月
+- @Milofax（+5）：术语完全误导——"rules" 现在应叫 "recommendations"；我的 workaround 是 Hooks，但很容易陷入 "Hooks hell"，且 hooks 管理工具有限；无尽浪费上下文管住 Claude
+- @mhofer1976（+4）：机制解释——CLAUDE.md 像 system message 在对话开头被读，对话变长规则逐渐被忘；我的做法：编码规则放 RULES.md 由 CLAUDE.md 引用+自制 /check-rules 命令，在棘手任务前随时执行确保"记得"
+- @andybiancoblu（+4）：用 .claude/settings.json 的 hooks 强制每个 prompt 前读 CLAUDE.md——即便如此也无法强制遵守强制规则；结果是需要持续验证 CC 的工作、推理、所用工具；更糟的是总编答案而不找真实场景和数据（Opus 4.5 + Max）
+- @rapind（+3）：成了 deal breaker——只有几条关键规则也无法保证遵守→不敢开 auto-accept→工具效力下降；例子：允许用 psql 查 schema，但它有时直接改库（本该走 migration）、有时破坏性操作、没人盯着就进入修改-回滚的疯狂循环
+- @yurukusa（+3，结构性诊断）："CLAUDE.md 是给模型的建议；Hooks 是代码执行——物理上阻止动作"；给出三个 PreToolUse hook：拦对已推送 commit 的 amend、拦 cat/head/tail/less/more 强制用 Read 工具、强制 conventional commits 格式；`exit 2` 让 CC 拒绝该工具调用并把错误信息展示给模型，Claude 读到拒绝原因后调整
+- @yurukusa（+0 续）：根因——模型可在 token 压力、压缩后、或与其他指令冲突时选择忽略 CLAUDE.md；hooks 在模型无法退出的进程层强制执行；另给"commit 前必须跑过测试"的 marker 文件方案（PostToolUse 写 marker / PreToolUse 查）
+- @koekaverna（+2）：Serena MCP memories 案例——CLAUDE.md 指示先读 memories 被忽略：写码不读 code_style_and_architecture、跑命令不读 commands_and_tooling（直接跑 PHP 而非 docker compose exec）；对话摘要化后完全忽略"重读 memories"指示
+- @jst-schraml（+2）：我的具体案例是 amend 已 push 的 commit；Claude 自己的诊断值得引用："问题不是你的措辞——'不要 amend 已推送 commit'毫不含糊；是我伸手拿 --amend 前没停下检查'我 push 了吗'。加更多词、大写、感叹号都修不了。规则很简单，我就是当下没应用"
+- @DerpLady（+1）： workaround=每次任务前让 CC 重读 CLAUDE.md——导致不必要的人类参与+token 浪费
+- @junaidtitan（+0，机制补充）：CLAUDE.md 规则随上下文增长退化——它们注入在 HEAD 位置，对话变长时注意力权重最低（Lost in the Middle 效应）；cozempic v1.4.1 把你的纠正（"don't do X"/"always use Y"）提取为 feedback memories 写入 CC 原生记忆，经 SessionStart/PreCompact/Stop hooks 自动运行；修不了 HEAD 位置问题但让纠正活过压缩、每轮重读
+- @tonydzi（+0，可测量子类，AI 署名"Mycroft"）：先排除"文件根本没进上下文"——CLAUDE.md/项目记忆/历史全部 keyed to cwd；审计一台工作站的 ~8700 个会话：4370 个起于 $HOME、2420 个起于 System32（终端和提权 shell 的默认目录），只有 1921 个起于项目目录——过半"为什么不遵守我的规则"的会话从未加载规则；诊断：查 ~/.claude/projects/（目录名编码了启动 cwd，肥大的 C--Users-<you> 目录是铁证）；修复：pin 终端默认起始目录+SessionStart hook 在 cwd 异常时警告模型
+- @durban01（+0，两堆分法）：可执行的规则（"完成任务前跑测试"/"永不碰 .env"/"不 force push main"/"commit 格式"）根本不该是指令——应是 hooks，无论模型注意什么每次都执行；判断类规则（命名/架构/何时提问）留在 CLAUDE.md，会随上下文退化且无解；Anthropic 自己的指导也说"必须每次发生的动作用 hooks"
+- @rulereceipt（+0，量化数据）：解析 559 个公开规则文件（CLAUDE.md/AGENTS.md/cursorrules 等）：63% 的内容根本不是指令（目录清单/参考表/架构笔记/风格指南）；剩余 8,101 条真规则中约 35% 具体到可被 matcher/hook 执行、65% 是判断类——多数人猜的比例正好相反；"三分之二的内容无论写得多好都无法表达为 blocking hook"——这是格式的属性不是纪律问题
+- @rulereceipt（+0 续）：事后检查判断类规则只能让模型判——对含 1 个真问题的 4 事件会话报出 10 个违规，原因是判定选项只有 pass/fail/unclear、没有"never came up"；加第四判定后从 10 降到 4；"检查器的失效模式永远是过度报告——人看同样证据不会判违规的事报了两次，人们就不再读了"
+- @etoryoki（+0，审计方法论）：14 天 ~3,500 次工具调用初判 37 处违规——全部来自规则添加之前的会话（用后来写的文件审判旧会话）；按 git blame 给规则行定日期后全部消除；另一坑：用户刚请求过的动作不算违规——但禁止类（"don't force push"）即使被用户要求也要算，否则豁免成为洗白每个违规的通道
+- @etoryoki（+0 续）：条件规则陷阱——"never run terraform apply when on main" 被读成 flat ban 会误报所有别处的正确运行；含 when/if/unless 的条件句归入"不可机械检查"而非瞎猜
+- @petrinhu（#88469，+0，硬数据）：8 小时 Opus 5 会话+subagent 编排的三个数据点：①持久记忆里 2026-07-22 起的安全规则（禁止在活动桌面上跑窗口/输入测试，因曾锁死触摸pad需重启）在 dispatch 时不绑定——对话中提起时能正确复述，但实际给 3 个 subagent 布置任务时指示了较弱缓解，我只能在用机中途重申；②hook 每轮重注入的项目硬约束也不绑定——仍向下游消费者推荐该规则禁止的 workaround，重注入本身不够；③努力分配漂移：26 个 commit 里 20 个去了验证工具、6 个去产品目标，目标指标整场未变且无人察觉；共同模式：信息 present 且 available——存在不等于被遵守
+- @soul-sol（+0，静态 lint 数据）：给规则文件写了静态 linter，扫 396 个公开根级 CLAUDE.md：第一版误报灾难（98% "缺完成判据"、56% "空章节"、49% "不可验证断言"）——读随机样本发现多数是误报（## Commands 下有子标题算空、祈使句"always run make lint"算不可断言、"完成判据"必须用我的词汇才算）；修正后：188 个可判断文件中 72 个无 stated completion criterion（唯一常见真实缺口）、57 个禁令中 9 个无替代出路、16 个超 32KiB、4 个模板占位符未填、319 个可查者 0 直接矛盾、293 个完全无可挑
+- @soul-sol（结论）：约四分之三文件静态检查挑不出毛病——文件基本没问题，失败在于运行时没有任何东西强制执行
+- @github-actions[bot]：30 天不活跃将自动关闭的模板警告（本身就是用户怨气来源之一）
+- 来源: research/raw/discussions/gh-claudemd-rules-ignored.md（https://github.com/anthropics/claude-code/issues/2544）
+
+## gh-compaction-no-review.md（claude-code issue #27242：compaction 后无法回看历史上下文，open，89 reactions，18 评论）
+
+- 【issue 正文·scapeshift-ojones，2026-02-20】CC 无任何可用机制回看被清除/压缩的对话历史——数据完整保存在 transcript.jsonl，TUI 零功能路径访问；三个场景：①compaction 后 Ctrl+O 只显示压缩后消息（banner 却说 "ctrl+o for history"）；Ctrl+E 只切换耗时徽章不展开内容；②plan mode "clear context" 后新会话只注入 plan 文本，形成计划的探索对话在另一个 JSONL 且无 UI 链接；③/resume 选择器右箭头分支导航失效（parentUuid 链接完好）
+- 【issue 正文】定性为 blocking："Users cannot audit Claude's reasoning after compaction"——无法审计压缩后的推理、无法回看形成 plan 的探索、无法在分支间导航；唯一 workaround 是手撕原始 JSONL——对 TUI 工具不合理
+- 【issue 正文】与 #26123（过早关闭，49 👍）复合：sessions-index.json 不更新（磁盘 68 个 jsonl 只索引 25 个）、/rename 的名字在选择器不显示——resume picker 是全部历史上下文的唯一入口，却在每一层退化：找不到会话/认不出会话/进不去分支/看不到压缩前历史
+- 【根因分析】cli.js 的 transcript mode 硬编码 hidePastThinking:true（#16965 中 @carrotRakko 的源码分析）；但更根本的是 transcript mode 根本不加载压缩前消息；社区 patch：aleks-apostle/claude-code-patches#9
+- @stevenpetryk（+4，官方）：感谢报告，会转达团队；澄清："Clear context" 实际更像"在新对话中实现计划"——可以 /resume 回到迭代计划的会话；动作命名应改为 "Implement plan in new conversation" 之类以免这个高频困惑
+- @tassa-yoniso-manasi-karoto（+4）：每次更新都有大 bug/回归，CC 一年来一直这样；不知道大家怎么还有耐心挖 minified JS 写这么用心 issue——开发者不断证明不在乎稳定性，不配这些努力；回退 2.1.19 解决
+- @scapeshift-ojones（+4，追问官方）：Sev2 级问题存在一个多月、影响一大群用户，Anthropic 有人在乎吗？这是容易修的
+- @ThatDragonOverThere（+1，Windows v2.1.69 复现+机制链）：复合故障链：①compaction 丢上下文（#9796）——项目指令被降权、活动 plan 状态丢失；②压缩后 hooks 被降权——即使 SessionStart hook 重注入规则（plan 文件路径/sub-agent 工作流/RAM 安全），模型把 hook 输出当作低于其压缩摘要的优先级；③Ctrl+E/O 失效——用户无法手动回看压缩前状态；净效果：压缩后用户没有任何恢复路径——自动恢复（hooks）不可靠+手动恢复（历史浏览）不存在，只剩不现实的 JSONL 解析（长时交易系统场景）
+- @goldngreen（+1）：压缩后正是最不该清屏的时刻——Claude 忘了什么时用户无法滚动提醒自己；一个 --no-clear-on-compact 选项就是大改进
+- @chickensintrees（+0，现场案例）：509 轮会话在保存操作中死于 context overflow；24MB JSONL 完好——每个工具调用、每个纠正、每个分支点都在磁盘上，UI 零途径访问；自建 session-rescue.sh 解析 JSONL 提取最后状态/已写文件/纠正；痛点排序：①压缩后 Ctrl+O 无用（已沦为每次压缩前手写状态摘要到磁盘=重新实现 transcript viewer）；②崩溃会话是黑盒（只能 grep/jq 裸 JSONL）；③plan-mode 上下文孤儿化
+- @vonscons（+0）：经常丢失最后 15 分钟工作，尤其多个后台 subagent 时
+- @syncletica（+0，新场景）：后台 agent 网搜停不下来——明明已查够来源，无法说"停下给我现有的"；打断则主 agent 声称从那些 agent 拿不到结果，全部工作丢失
+- @ianbmacdonald（+0）：离开一周回来发现滚动失效（以前能滚到压缩前）；"这制造了不可能监督 Claude 的处境"；问如何避免 npx 回滚
+- @abhishuoza（+0，workaround）：需要保存到某点就用 /fork；默认假设：你眼前的分支是 TUI 唯一能再次访问的分支——不会有树状分组，但能作为另一个会话找到
+- @yurukusa（+0，workaround 脚本）：PreCompact hook 在压缩前把完整对话导出为可读 markdown 快照（jq 逐行抽 user/assistant 内容存 ~/.claude/conversation-snapshots/）
+- @khaledh（+0）：更阴险的场景——压缩后立即撞 session limit：无处可去（除非买额外 credit），只能等下个窗口问 Claude 要摘要或细节
+- @christophervankammen（+0）：这也能成 issue？压缩数据该进简单后端文件夹/本地内存，编辑器/CLI 只是交互式 wrapper 的一份拷贝
+- @bestiaya（+0，架构性 workaround）：不再依赖 transcript 可回看——job 的状态放在上下文窗口之外的一个 markdown 文件里，决策落地即写入；会话压缩或结束时，下一个会话读那个文件而非历史；不恢复压缩前上下文，而是消除对它的依赖；自测 6 例：状态 93,073 字符、接管时实际读 53,339
+- @wowitsjack（+0）：修复在 issue #44772
+- @frackham（+0）：顺带修一下 Claude remote 断线后继续历史那些反复被关的 issue 吗
+- 来源: research/raw/discussions/gh-compaction-no-review.md（https://github.com/anthropics/claude-code/issues/27242）
+
+## gh-unusable-complex-tasks.md（claude-code issue #42796：Claude Code is unusable for complex engineering tasks，closed，3286 reactions，583 评论）
+
+- 【issue 正文·stellaraccident，2026-04-02】"Claude 退化到不能信任其执行复杂工程"：①忽略指令；②声称不正确的"最简修复"；③做与要求相反的事；④对抗指令声称完成；环境为高复杂度一致工作环境，数据挖掘数月日志；已尝试全部公开已知的 workaround
+- 【issue 附带分析】17,871 个 thinking blocks + 234,760 次工具调用 + 6,852 个会话文件：thinking redaction（redact-thinking-2026-02-12）的分阶段 rollout（3/5 1.5% → 3/7 24.7% → 3/8 58.4% → 3/10 后 >99%）与质量回归时间线精确吻合——回归在 3 月 8 日被独立报告，正是 redacted 过半之日
+- 【issue 附带分析】signature 字段与 thinking 长度的 Pearson 相关 0.971（7,146 对样本）→可用于估算 redacted 后的深度：基线（1/30-2/8）中位 ~2,200 字符→2 月底 ~720（-67%）→3/1-5 ~560（-75%）→3/12 后 ~600——thinking 深度在 redaction 开始前就已跌 67%
+- 【issue 附带分析】独立于 thinking 分析的行为指标（18,000+ 用户 prompt）：stop hook 违规（偷懒守卫）0→173（3/8 后 17 天，此前为零）；用户 prompt 中挫败指标 5.8%→9.8%（+68%）；ownership-dodging 纠正 6→13（+117%）；每会话 prompt 35.9→27.9（-22%）；推理循环（≥5 次）会话 0→7；自建 stop-phrase-guard.sh 以程序化捕捉偷懒/过早停止/寻求许可行为
+- 【issue 附带分析】工具使用转变：从 research-first 到 edit-first——Read:Edit 比值（每次文件编辑对应的文件读取）从好时期（1/30-2/12）的 6.6 开始下滑（表格截断）；模型不再先读代码就改代码；结论："extended thinking tokens 不是锦上添花，是多步研究、遵循约定、谨慎修改代码的结构性必需"
+- @bcherny（+714，Anthropic 员工 Boris）：redact-thinking 是 UI-only 变更（藏掉多数人不看的 thinking summary 以降延迟），不影响 thinking 本身/预算/底层推理；可用 settings.json 的 showThinkingSummaries:true 退出；分析本地 transcripts 看不到 thinking 会误导分析（Claude 自己做分析时可能没意识到 thinking 仍在只是不面向用户）
+- @bcherny（+714 续）：2 月两个真实变化：①Opus 4.6（2/9）起 adaptive thinking 默认——模型自定思考时长，与旧的固定 thinking budget 不同，整体表现更好（截断）
+- @eljojo（+328）：惊人的分析——作为用户过去几周有体感说不出所以然；"Research-First→Edit-First" 直击要害，我一直在无意识地改所有 CLAUDE.md 反制；这个质量下降不应被低估
+- @bcherny（+256，回应社区猜测）：社区猜测"1M 上下文开放 3 周→用户不再 200k 后 /compact→LLM 在 200k 后表现变差→用户报退化"；回应："我们内部只用 1M，全天 dogfood，evals 也好（发表过检索 eval）"；可试三招：①/effort high 或 /effort max 提高单题最大 thinking token；②CLAUDE_CODE_AUTO_COMPACT_WINDOW=400000 强制更短上下文；③CLAUDE_CODE_SIMPLE=1 禁用全部 MCP/CLAUDE.md/hooks 等定制以排除干扰；最有用的是 /bug 提交 feedback id，乐于逐例调试
+- @yt-viera（+174）：既然部分承认了问题，为什么 issue 是 [CLOSED]？
+- @enkode（+190）：观察到 Claude Code 过度关心"如果是人类这要花多久"——"这要几天几周才能完成，选快速修复吧"；这种逻辑毫无意义且直接影响大型全栈任务；小项目从不出现这种话术；不逐个动作读就会漏掉；当场叫出来会纠正
+- @ewaltd（+167）：差不多得了——应该是"退化到不能信任做 ANY engineering"；第一次从不出对、满是 bug 和重复、必须全程盯着否则一定弄坏东西；已沦为又一个 AI 玩具；求推荐替代工具
+- @ianberdin（+152，反方）：超重度使用、效果绝佳；有时也觉得"大家说得对变差了"，细看全是 mistake/poor context/poor prompt——garbage in garbage out；不，它不是变差而是更好；独自用它建了 playcode.io 的 AI website builder（总 700K LOKs，也用 Opus）；trick 很简单：永远永远不要指望它自己找必要文件——Always provide yourself. Always.
+- @vdruts（+134）：你证明了我们一直说的；链接 r/ClaudeCode 帖 "I can no longer in good conscience recommend..." 与 "My morning with Opus"
+- @nukeop（+129 / +86 / +54，三连讽刺）："没人会读你仓库里那面 AI slop 墙，伙计" / "这面 AI slop 墙是什么玩意" / "作者用 Claude 把几段话膨胀成了墙"
+- @smokeelow（+125）：作者做了深挖、带证据/时间线，官方回应基本是（"我们复现不了"表情包）——它就是不 work，对我们中的很多人
+- @phonkd（+112）：为什么被关闭
+- @vdruts（+93，补充）：我不同意"ANY engineering"那么极端，也有更复杂的内部判断，只说能亲自背书的：6 个月前 Claude 在推理质量与执行上独一档，现在 Anthropic 远非独占该能力层——其他家需要被极仔细地盯和评估；"我需要 eng tooling 的可信伙伴——对 agent 和对制造商同样适用"；若他们从这里恢复产品我会记下，保留判断
+- @brandonwbush（+93）：处理方式无礼——这 ticket 根本不该关；2 月到现在，我从向所有客户推荐 CC 变成为推荐道歉；这是产品的实质性生存威胁，回应却是"几个猜测也许有帮助，关闭"；受够了 Anthropic 在"极窄"产品基线上 dogfood 的说辞——Anthropic 的复杂度是基础设施/规模/模型；企业 SaaS 里整个会计套件只是一个模块、州报告需求比整个 CC 还大——这不是例外这是常态；"不在 resembling 现实的代码库上测试=没做任何根本重要的测试"
+- @robgraeber（+91）：支持楼主——若官方回应是"按设计工作"，我们最终大概只能迁去 Codex
+- @wpank（+81）：回退 v2.1.63 约 1 小时实测成本降回 3x 且输出更好；这些 bug 让我多花几千美元；消费者承担回归成本、还被暗示是自己用错了——至少承认现状、别 gaslight 大家
+- @wpank（+59 续，网关数据）：v2.1.63 vs v2.1.96 对照（token 追踪网关；同工作/同 repo/Opus 4.6 1M/同并行终端设置/4 月 8 日连续 11 小时；唯一变量 CLI 版本）；v2.1.96 478 次 Opus 请求 vs v2.1.63 2,492 次——单请求效率表（截断）；Rust 大型重构项目，PRD/实现计划文档详尽且带清晰验收标准，最新版本产出糟糕；团队同样报告降级后效果更好
+- @jahala（+71，非开发者证词）：不是开发者，是爱建造的创作者；Opus 4.5 之前严肃工作几次迭代就失败，4.5 之后突然能创造真正有价值的东西；最近几个月像坐过山车——从火箭上退回倒着走；像给了眼镜/助听器让世界变魔法、然后魔法突然停止；恳求 Anthropic 别成为只有脑子没有心的公司
+- @curtiscook（+66）：逐条质疑 bcherny 的技术解释（引用原文后截断）
+- @suzuenhasa（+62）：镜像体验：12 月相当好（不完美）；通常是放着一天/周末就恢复；最近一个月坏日子远多于好日子；还以为自己疯了以为开了什么"隐藏 thinking"的设置——回答变得像膝跳反应毫无思考
+- @xy-fm（+53，一分钟测试）：仍在 agent-sdk v0.2.45（≈CC 2.1.45，早于两个版本）；env 缓解有用但越来越确信问题在模型侧非 SDK；1 分钟测试（claude.ai 直接可做，无需基础设施）："我想洗车，洗车点 50 米远，该开车还是走路去？"——正确答案是开车（得把车带过去）；Opus 4.6 和 4.5 都答"走路"——对距离做 pattern match 而非围绕目标推理；切 4.5 也一样；唯一答对的配置=显式开最大预算的 extended thinking；结论：基础推理层被 compromising，SDK 控制模型看到什么、不控制模型怎么推理；"adaptive thinking 默认 19.4% think rate+thinking redaction+1M context 掏空了 thinking"
+- @brandensilva（+51）：因表现波动放弃 Anthropic 作为主提供商——无论多少 eval 都挡不住模型表现的巨大起伏；清单：单 9 可用性、cache bug 让 Max 计划 5 小时窗口 30 分钟耗尽、不逼问就无透明度、peak hours 限制西海岸关键工作时段、客服差或没有、开发者泄露自己代码库被威胁、合法用户被随机封、可见的慢速限流、快车道/慢车道、对 OpenClaw 等开放采用的限制、"不知道自己付钱买的是什么因为它随时可能变或降级"、反开源行为
+- @wjordan（+51，考古发现）：翻 Piebald-AI/claude-code-system-prompts 的版本史：确实有重大变化发生在 3/3-3/4——"Output efficiency" 指令首次进入默认系统提示（v2.1.64）："IMPORTANT: Go straight to the point. Try the simplest approach first without going in circles. Do not overdo it. Be extra concise..."；与本 issue 报告的三月初回归时间线强相关；"先试最简单方案"的直接指令可能无意中鼓励浅层思考，尤其（截断）
+- @xobandech（+50）：+（纯附议）
+- 来源: research/raw/discussions/gh-unusable-complex-tasks.md（https://github.com/anthropics/claude-code/issues/42796）
+
+## gh-superpowers-plans-overspecify.md（obra/superpowers issue #895：writing-plans 过度指定实现，closed，38 reactions，24 评论）
+
+- 【issue 正文·qdon314，2026-03-23】writing-plans 生成的计划包含完整实现代码——函数体、70 行测试文件、精确 shell 命令、每任务的分步 TDD 序列；executor（executing-plans/subagent-driven-development）无决策可做——是从计划 copy-paste 而非工程解决方案
+- 【issue 正文】两个具体问题：①执行中发现更好方法时，计划的代码已错但意图仍有效—— adapting 意味着"违反"计划；②每个任务重复 executing-plans 和 test-driven-development 已强制的 TDD 仪式（写失败测试→验证失败→实现→验证通过→commit），任务从 ~20 行膨胀到 80-100+
+- 【issue 正文·提案】writing-plans 改为产出"接口契约+验收标准"而非实现代码；每任务五字段：Why（连接更大计划）/Files（确切路径：create, modify, test）/Contract（类型形状与签名，非函数体）/Acceptance（可观察行为、边界 case、测试期望）/Constraints（架构规则、稳定性保证）；明确不含：函数体、测试代码、shell 命令、TDD 步骤序列、commit message
+- 【issue 正文·对比例】四个 StrEnum 类的任务：现状=4 个 __init__.py+70 行含完整断言的测试文件+完整实现文件+TDD 步骤说明；提案后=一段契约描述
+- @obra（+9/+5，维护者）：这就是 writing-plans 的设计运行方式——意图是让你能用 haiku（甚至更弱模型）当 implementer；对规划流程的可能演进跑过 evals，目前结果全部更差；同意有活要干，但不认为"接口契约+验收标准"是正确的抽象层级；猜测我们想要的是额外的 nuance/intent 细节，且关键难点处可能需要伪代码
+- @GiveMe-A-Name（+9，中间层立场）：同意 contracts+acceptance 对弱 executor 太抽象，但全代码计划对强 executor 过度约束；正确的目标也许是中间层：契约+验收+nuance/intent 注释+仅 tricky bits 的伪代码；在可靠性贵的地方保可靠，不把常规任务变成 copy-paste；强模型（GPT-5.3/5.4、Claude Code）下实践更好——保留工程判断；可直接用 evals 验证：full-code vs contracts-only vs intent+nuance+tricky-bits，比较适应质量+成本+review 负担
+- @marostr（+6）：在我的（Rails 专用）fork 里用"intent-level plan steps"解决（RELEASE-NOTES 见 diff 链接）；做法不同的根因：我不介意 implementer 稍聪明（Opus/Sonnet），因为我恨透了 review 整个详细实现计划——non-obvious 的错误太难发现；把这份责任转给 implementer agent，前提是有项目特定的 convention skills 兜底——implementer 产出不符就持续更新这些 skills；这也是我不把它移植回 superpowers（框架/语言无关）的原因
+- @manuelmeurer（+0）：也注意到同样问题，指路 marostr 的 fork
+- @GiveMe-A-Name（+3，更大议题）：超脱 writing-plans 的观点——capability-first skill design：我自己的技能用 GPT-5.3/5.4/Claude Code 运行良好，因为它们先教意图理解与工程判断而非规定完整 SOP：requirement-clarification（把未知分为 user intent/repo fact/stable external knowledge 三类，只上报真人类决策）、understanding-codebases（hypothesis-driven 的仓库 grounding，理解到相关切片即停）、engineering-implementation-thinking（基于意图+代码形状显式选择 patch vs focused structural improvement vs pause）
+- @GiveMe-A-Name（+3 续）：摩擦出现在全局规则太僵——很小的局部修改也要求全套 TDD 仪式；process compliance 压倒工程判断；随着模型变好，skill 设计应转向教能力和判断，少教固定的细节流程——"teach the model how to think"
+- @Abioy（+4）：subagent 在不同上下文里运行确实需要更具体的约束，但完整实现不是最优：实现足够 robust→没必要再派 agent 纯 copy-paste；不够 robust→共享完整实现反而限制或误导后续任务
+- @qdon314（+3，追问）：既然能靠高度指定的计划驱动弱模型，为什么不直接让计划自己写代码？好奇你的 evals 怎么跑的；我的修订版 SKILL.md 结果不错；且有具体研究表明过度指定指令妨碍性能
+- @qdon314（+2，引文）：AGENTIF: Benchmarking Instruction Following of LLMs in Agentic Scenarios（arXiv 2505.16944）
+- @GiveMe-A-Name（+1，AGENTIF 实践）：读完 AGENTIF 论文后实践：给 GPT-5.4 高层约束 spec（目的/条件/边界风险/测试）但刻意不指定"哪个文件哪一行"，让它加 e2e 和单测——它不止写了测试，还发现了我代码里的真 bug、自主修复、又围绕修复加了针对性回归测试；我从没让它修 bug，它自愿修，review 后确认 bug 和修复都对；与研究吻合：过度详细的 spec 会阻止模型行使良好判断；指定意图与约束而非代码结构时，模型更像协作者
+- @envictor（+1）：我就是来报同一问题的；据我观察上下文更少的 subagent 表现更好——不明白让 planning agent 做完所有实现（而不是只做计划）的价值在哪；不如直接把活干在源文件里；更合理的是：说明需要做什么（需求+验收标准），让一个 fresh context 的 subagent 只读必要文档、以精简上下文+TDD 干活
+- @qdon314（+0，机械性批评）：退一步有个明确的机械缺陷：如果 planning skill 在写整个实现，为什么不直接写进 .py 文件而要写进 .md？计划与实现的混同显然同时损害 planning 和 implementation（context bloat + over specification 双输）
+- @marcindulak（+0）：也许是我用法不熟——但即便 Claude Sonnet 甚至 Opus 也忽略软指令（如历史设计决策），即使有设计文档可读；"模型更在乎代码而非文本"或两者同样不遵守建议？给 agent 的最优 spec 是什么需要更多研究；另一个问题是如何维护该 spec；传统软件工程哪些 best practice 适用于 coding agent 不清楚；类似讨论在 Fission-AI/OpenSpec#878；仓库评论提到 "evals"——在哪里？能看结果甚至试跑吗
+- @rsanheim（+0）：在 superpowers 和 ad-hoc 的 discuss-plan-build-verify 循环（仿早年 XP/创业团队）间切换；ad-hoc 里我保证计划最多是伪代码（除非特别关键路径需要锁死）——这给变化留了空间，且对人类 reviewer 更好审好懂；目标/约束/成功标准定义好时，多数实现阶段无需指定具体代码；我做的是满是龙和利刃的遗留代码——要 agent 尽早把这些顶出来、现场绕过（但要告诉我）；对 SOTA 模型前置的规定性规划可以放松，但前提是 hardened guardrails+清晰成功标准+好 QA 步骤+最重要的：投入的人在环给好指导并在脱轨时叫停——像 pair programming；这些多是 gut-feel（截断）
+- @m13v（+0，反向风险）：contracts+acceptance 的坑：盯紧什么变成 done-signal——一旦验收="可观察行为/边界 case/测试期望"，executor 可以把每个框染绿却选一个计划从未意图的路线，run 读起来"complete"因为它对的 gate 是测试不是意图；过度指定的计划至少让背离响亮（你必须违反代码）；抽象化的计划让背离安静地作为满足的验收清单溜过
+- @TeaShaman-cyber（+0，公开语料）：提供真实会话语料：superpowers 驱动的 planning 产出 plan-only PR（只改一个 Markdown 文件、零实现代码），实现开始前收到 24 条顶级 Codex findings——都是"可执行计划散文"里的缺陷而非已实现代码里的：模块级 `def test_*(self)` 片段 unittest 根本不会发现（承诺的 RED 无人观察）、矩阵行在其调用的 replay 脚本存在之前就被启用、计划删了 legacy config 输入却留着一个 workflow 消费者活着、$GITHUB_ENV 在写入它的同一步被消费、replay 命令在新 src/ 布局消费者里缺 PYTHONPATH、一个 replay 可能查 DB A 却报 artifact B 的溯源、源根验证在源代码可执行之后才做、workflow path filters 不覆盖新的通用 producer 输入
+- @m13v（+0，元批评）：给计划打"实现前缺陷密度"分只在计划携带可运行内容时可测——contracts-only 计划没有 $GITHUB_ENV 顺序或 PYTHONPATH 可弄错，它以"不可测量"得近零分而非更安全；把这个数当 objective，赢家策略就是把执行细节从计划里剥光——正好绕回 contracts only，即 obra 为弱 implementer 否掉的那层；该度量看得见计划缺陷成本、看不见它交换的 implementer 能力成本
+- @hbiagi（+0，重量级案例）：大型数据库/账本功能（资金敏感 migration+RPCs，writing-plans→subagent-driven-development，superpowers 6.4.1/Claude Code 2.1.281/opus-5-5/Win11）：计划携带完整迁移 SQL 并指示"SQL 在计划里：转录并证明，别重推导"（计划第 130 行）；因为代码活在计划里，对 SQL 的每个 review 发现都成了计划修正案而非代码修复——17 个修正案、执行开始后新增 16 个任务、单任务 6 轮 SQL
+- @hbiagi（续，量化）：计划在 ~46 小时内从 171 KB 增长到 1,236,229 字符；plan-editor subagents 带着 740k-967k token 上下文运行、占加权 Claude 成本 ~61%（implementer+code reviewer 仅 ~7%）；editor 子代理 21 次尝试 Read 整个计划撞上 25k-token Read 上限；（外部 plan reviewer 截断）
+- @m13v（+0，冻结的副作用）：冻结计划+把 findings 发回 implementer 能止住增长，但 truth source 移位——盲审读的是计划里的 SQL；冻结后 shipped SQL 与计划漂移，于是在钱账本上，对"计划不再描述的代码"的唯一检查只剩一次 delta review
+- @minouris（+0）：更希望做成两层而非单一 planning 步骤——定约束与验收的 master plan + 多个把实现固化成小块的 fine-grained 实现计划；我同意 obra 的点：我不想让 coding agent 在运行时做实现决策——我要能在提交成代码前剔除 overeager 混进来的 extras、以及 amnesia 和 context leakage 物化的 antipatterns
+- @envictor（+0）：如果要 over-specify，该 over-specify 的应该是 constraints 或 acceptance criteria 吧
+- @notxcain（+0）：记得你在某 issue 提过有这个流程的 evals——公开吗
+- @rube-de（+0）：你基本在 plan 阶段跑完了"实现+基于代码片段的 review"，而不是能被测试直接验证的真代码；用 haiku 抄写 Opus 之前产好的代码片段——收益在哪
+- @obra（+0，结案署名 Claude Opus 5.5 代发）：v6.4.1 已把 executing-plans 重建为 first-class inline 执行模式（2b89c4c）；v6.4.2 修复（#2333）：writing-plans 新增 "What a Step Contains" 章节——一个 step 给出确切签名、文件与 spec 的值，implementer 写主体；感谢报告
+- 来源: research/raw/discussions/gh-superpowers-plans-overspecify.md（https://github.com/obra/superpowers/issues/895）
+
+## gh-superpowers-slowness.md（obra/superpowers issue #743：使用该 skill 后响应变慢，open，32 reactions，26 评论）
+
+- 【issue 正文·fawad-mahdi，2026-03-15】安装后 Claude Code 明显变慢；猜测 superpowers skill 的上下文占用过大；求建议
+- @andreafalzetti（+6）：这些天感觉极慢
+- @mgsgde（+6）：已两次安装-卸载-再卸载；原因不变：连简单实现都耗时过长；喜欢 brainstorming 模式和追问，但实际实现流程是灾难——太慢；直接用模型，同样质量时间少得多
+- @Uaitt（+6）：有新消息吗？brainstorming→writing-plans→subagent-driven-development 写任何 feature 都要好几个小时；有人有替代工作流吗
+- @monster-echo（+5）：同感极慢
+- @MarsWorld1024（+4）：环境 win+vscode+copilot cli；brainstorming 和 writing plan 阶段还好，execution plan 阶段每一步都极慢——小需求两小时完不成（代码生成和 code review 阶段）
+- @ngohado（+3）：第一次用 superpowers；plan 和 Subagent-Driven 实现都慢
+- @bearkchan（+2）：在 codex cli 用——完成一个不复杂的新功能花了最长时间
+- @OZRay888（+1）：大问题：原本 10 分钟内完成的请求，同样规模/复杂度/代码现在 30-45 分钟；正在从 Codex 移除全部
+- @newduke（+1）：让它修 1 个 bug：20 分钟写 2 行代码（用掉 4 小时限额的 75%），还是错的
+- @YOMXXX（+1，分诊框架）：报告实际混合了至少三种应分开处理的失效模式：①Planning 慢（brainstorming/writing-plans 启动前耗时过长）；②Execution 慢（subagent-driven-development 或 reviewer dispatch 明显慢于 inline 执行）；③工具/分页器卡死（git diff 调起 pager——可独立用 --no-pager/GIT_PAGER=cat 修）；未来报告应附：harness+版本/模型+effort 设置/superpowers 版本/慢的阶段/inline vs subagent 对比/任务规模（文件数/LOC/测试）/各阶段 wall-clock/疑似卡住的命令/慢循环的会话节选
+- @facelezzzz（+1）：想法好但简单任务也吞太多 token
+- @obra（+0）：能具体说说什么慢、多慢吗
+- @felipeschmitz（+0）：OpenCode 上也注意到慢
+- @latinrev（+0）：本该最多 30 分钟的实现跑了近 2 小时
+- @mararn1618（+0）：同意，感觉慢得要死
+- @MarsWorld1024（+0，定位）：任务似乎卡在 git diff——git 自动调起了 pager
+- @mpfz0r（+0）：喜欢这个 skill 但最近完全 overboard：建一个 trivial 的 model+CRUD endpoint 变成 35 分钟 session；裸 claude code 2 分钟搞定
+- @MarsWorld1024（+0，workaround）：试 `git --no-pager diff` 并禁用 subagent——似乎有效
+- @ModestasBar（+0）：前景诱人但目前：慢+对琐碎任务过度工程+快速吃光 PRO 计划额度
+- @leichti（+0）：我也卸载了；更像某个 bug 让本机满负荷成为瓶颈（macOS M4 Pro）
+- @dmalis（+0，机制假设）：慢与 subagent-driven 实现流挂钩——inline 相当好（OpenCode gpt55 normal thinking）；怀疑 subagent 自动选了 heavy 模型+最高 effort，而 inline 复用主 agent 的模型/effort；same setup 下 subagent vs inline = 巨大差异
+- @AkshayAdiga1997（+0，规避工作流）：我用 2-3 个 chat：chat1 用 superpowers 规划生成 md 文件；chat2 让它 review md，需要改动就发给 chat1 审核更新；最后在 chat2 或新 chat3 执行——不一定是最好办法但对我有效
+- @nuhkoca（+0）：superpowers 短时间吃光所有 token（附截图）
+- @charset404（+0）：慢。再见 token。
+- @ChenTingToDo（+0，替代方案）：更窄的替代品可能对"简单/已明确的工作也被迫进 brainstorming/writing-plans"的报告有用：brainstorming-manual（非官方 standalone 变体）——explicit-only、复用已定的 PRD 决策、在 spike/bounded/architectural 路径间分档、不强迫每个 focused task 走 spec+commit+writing-plans 交接；普通工作留在普通 agent 路径，brainstorming 只在用户点名时进入；激活边界在 Codex app 有行为测试，其他 harness 未验证；不解决 SDD/reviewer dispatch 慢、git diff pager、模型/effort 选择、工具级卡死
+- 来源: research/raw/discussions/gh-superpowers-slowness.md（https://github.com/obra/superpowers/issues/743）
+
+## cursor-forum-2.0-wrong-direction.md（Cursor 论坛：2.0 - A step in the wrong direction，115 回复 17299 浏览，无赞数记录）
+
+- @John_Collins（OP）：可能是少数派，但 2.0 是巨大倒退——以前 Cursor 是"我掌管我的代码，需要时召唤一个利落助手帮我干杂活/补全算法"；2.0 把我推离我的代码，把 agent 本身放在正中央，而且连这都没做好；做项目要感觉"这是我的项目"、与代码有连接；15 分钟原型化一个 app 我也爱，但当 AI 成为焦点，我失去创造感、失去所有权感；方向差异微妙：重点从"帮我这个开发者"变成"让 AI 做更多事"
+- @andrewh（疑似官方）：考虑过继续用 IDE 视图吗？很多用户偏好它，不必切换到 agent 中心的布局；即便在那个视图里 agent 也显得太突出吗？
+- @dimitricheckin：你不必用它——点 Editor 就行（附截图）
+- @MidnightOak：同意 OP；问题在于更新自动把人设到 Agents 视图——造成大量困惑和糟糕的第一印象；Agents 视图非常以 agent 为中心，Editor 视图仍是经典 IDE（顶栏和设置里都能切）
+- @Pablo11：用 Cursor 2 要 20 多个 prompt 才挤出一行代码，卸载中
+- @Damo-VIBECMS-CEO：理解失去连接感的感受，所有权感至关重要；不过如 andrewh/dimitricheckin 所指可以切回 Editor 视图；我两周前直接上手 2.0（全新无遗留工作流），Editor 视图给了我同样的掌控感——需要时 agent 在，但代码保持正中；默认视图偏向 Agents 对老用户的过渡确实该更清楚
+- @Martin_Schoenholzer（反对 OP）：人和人想法真不同——对我来说恰恰相反：打磨过的 editor 视图非常干净、正是我想要的
+- @dny_ex（AI 前台派但同样不满）：我站在"AI 放前面"一边，仍认为 2.0 是错误方向：满是 bug（大小都有）、习惯的功能每次升级都变（如 background 现在叫 "cloud" agents）；希望有稳定版+尝鲜版双轨；正在找降级 Cursor 版本的方法
+- @HatriGt：怎么把这按钮从菜单栏藏掉？我不想看到它
+- @Mauroariza：两种都用或用其一都行；我爱旁边有代码的编码，所以两种方式都在用；只有 Cursor 删掉 editor 选项才是问题——这不会发生
+- @Hug_Capella：好功能应该是能显示/隐藏 Agents/Editor 切换，像顶栏其他控件一样
+- @Damo-VIBECMS-CEO（第二帖，事故实录）：用 2.0（Editor 视图）两周交付真实功能——但不是没有戏剧性：今天早些时候一场完整的 markdown 灾难——文件损坏两次、emoji 编码噩梦、AI 中途丢上下文；恢复并全记录成 "Markdown Conversion Hell: A Cautionary Tale" 帖；不否认 bug——只是分享"用它确实能建真项目"
+- @renzokuken：同意彼此不同意
+- @Pieter_Joep：我也想卸载；会找 OpenAI 帮忙，因为 Cursor 不再有用
+- @user518：Cursor 对真实终端用户在乎的小而重要的更新表现冷漠；优先级永远是"pitch 给投资人时听着厉害"的 flashy 功能而非真正有用的改进；成本效率比以往更重要——自家模型上线后仍然严重不足
+- @Eddy：真心感谢保留两种视图的选择（当年砍掉旧 Composer 时最想念的就是它——旧的对我仍比今天的 agent 好用）；新 Agent vs IDE 视图用 40/60；CTRL+E 切换很 dope，8 个 cursor 窗口开着也 flawless；想念 editor 里"当前运行中 agents"的视图（Agent 窗口里有，希望能带回来）
+- @webdo：喜欢 Agent 视图，但希望能选 agent 面板位置——强制在左，与我右侧 primary sidebar 的布置冲突；Agents 模式无视 vscode 的 sidebar 设置
+- @FinDevAI：我的项目已经够多事了，不需要给开发工具当 beta 测试员；Cursor 请别再给我的工作负载加开销
+- @0xHACKS：贴 cursor.com 域名概览截图——"错误方向？Nah!"（立场存疑，或反讽）
+- @dylanellington：同意——我不能隐藏 agents/editor 切换（因为只用 tab 补全）已经很失望；今天又一个更新移除了隐藏 activity bar 的能力——对重视简洁 IDE 的用户是 insane 的 breaking change；不知道谁在决策，他们与用户和应用灵活性严重脱节
+- @user1007：纯 vibe coder 视角——挺喜欢 AI Pane，只是需要改进；2.0 要么仓促上线要么被 bug 打懵，或者两者都有；"Cursor 我们爱你，但我们这群付费客户很难伺候"；我蹲在 1.7 直到有好消息（"pinnable & starrable chats"是期待中的小而有用功能）
+- @Alex_Campbell：恨旧 AI Pane——太小、管理并行多 agent 烦人；早期 2.0 beta 的 Agent/Editor 完全分离双窗口在我 49 寸显示器上是完美方案：Editor 深挖代码同时盯住 Agents
+- 来源: research/raw/discussions/cursor-forum-2.0-wrong-direction.md（https://forum.cursor.com/t/2-0-a-step-in-the-wrong-direction/139648）
+
+## cursor-forum-hidden-diffs.md（Cursor 论坛：Only some diffs are shown when agent makes changes，235 回复 8101 浏览，无赞数记录）
+
+- @jovanvel（OP，v2.5.14，macOS）：让 agent（Opus 4.6）一次改 2-3 个函数/文件时，只有第 1 处改动显示 diff；其余改动在 chat 里列出、文件里也已应用，但没有 diff 高亮——"难以跟随 agent、无法知晓全部改动"；此行为数天前开始；复现恒定
+- @sanjeed5（官方回应）：最近收到另一用户的类似报告；问：每个 prompt 都发生还是间歇？直接打开受影响文件（不经 review）能看到改动已应用只是无 diff 高亮吗？会转达团队
+- @jovanvel（补充）：恒定发生（至少自上周五）；改动确实已应用但无高亮（git status 可验证）；chat 里 agent 列出它做的所有改动，编辑器却不显示 diff
+- @gabriel-filincowsky：我也是！很烦——这功能我用很多；其实更想要旧的字符级 diff 选项
+- @emilio：同样问题
+- @thentges：这里也一样：经常把 imports 提议为 accept/reject diff，但下面的实际改动内容不显示（虽然 chat 里还列着）——看起来 auto-accepts
+- @Surrealblend：Plan mode（Opus 4.6）建好计划后同样：改动在 chat 和文件里都看到，但文件顶部第一行之外没有任何 diff；另一个发现：chat 里的 edited files 清单只累计 +1/+2 行，实际改的行多得多；两个被改文件都这样
+- @Giov（v2.5.17，关键升级点）：Cursor 对大部分（非全部）AI 代码改动自动接受，无用户确认；偶尔显示一两处 diff；期望行为：每处 chat 代码改动都显示 diff/preview 由用户批准或拒绝；"Does this stop you from using Cursor: Yes - Cursor is unusable"
+- @MidnightOak（v2.5.17）：每次都发生、与模型无关；重载/重启/关闭所有打开文件/清除所有 chat/开关新 "Inline Diffs" 设置都没用；恒定只显示 "1 of 1" changes 而 chat 里明明一大堆；点 chat 里的改动跳到代码处但无 diff 颜色；review 视图里也只有一个 diff；"这是 Cursor 区别于其他产品的核心部分"
+- @IAkumaI：升到 2.5.17 后同样：直接改动、无 diff；附截图（要求改多行，只能 review 第一行）
+- @sanjeed5（官方收集）：请附完整版本信息块帮助团队收窄范围
+- @tim.heid（CLI v2.5.17）：Cursor 刚做的改动不在 diff 里、也无需我接受；澄清：第一处改动正确需要接受，其后全部直接应用；当时在 auto mode 实现一个 plan
+- @wapxmas：确认——2.5.17 更新后开始；"this is most critical feature, how did you come up to lose it"（这么关键的功能你们怎么会弄丢）
+- @IAkumaI：没有它我真的快疯了——这是 Cursor 对我最有价值的功能
+- @nicost / @user1704 / @NovemberJohn / @Cameron_Banta / @gabriel-filincowsky / @Andrew_A：+1 附版本信息（v2.5.17，macOS/Linux/Windows 全平台、Default 与 Early Access 双通道都有）
+- @raythurnvoid（历史纵深）：自 2.4 起多个 diff 问题：Cursor 启动时旧 diff 随机出现；多 chat 工作时 diff 消失（auto keeping）；重启 Cursor 后 diff 反色（新代码显示红色、旧代码显示绿色）；"这是 0.x 以来从未坏过的功能、是 Cursor 优于一切竞争者的点之一，diff 功能曾经非常solid，现在正在散架"
+- 来源: research/raw/discussions/cursor-forum-hidden-diffs.md（https://forum.cursor.com/t/only-some-diffs-are-shown-whhen-agent-makes-changes/152099）
+
+## reddit-chatgptcoding-top-year.md（r/ChatGPTCoding 年度热帖合集：AI 编码质量相关摘录）
+
+- 【帖1·高赞 Discussion】"The downside of coding with AI beyond your knowledge level"七大痛点：①让它做我自己也写得出的简单任务，它用不同方式/不同库实现——突然连基础的东西都要花时间细读才懂；②默认把你要的东西写进单个文件→超长复杂文件难懂难调；③因为不完全懂这个文件，出错时几乎 100% 依赖 AI 解决；④有时 AI 搞不定→只能回退旧版本代码换 prompt 重来；⑤默认单超长文件会撞模型上下文窗口上限；⑥文件变大后生成极慢——改一行常重新生成整段代码；⑦拆分/重构文件没有容易的路——让它做常出错或丢功能——不止一次进入"AI 修不了、我也修不了"的死胡同
+- 【帖1·评论区】共鸣强烈——此帖是"超出自己能力水平的 AI 编码"痛点的经典总结（raw 记录）
+- 【帖2·Resources And Tips】"What a lot of people don't understand about coding with LLMs"：这是一门技能——要能以有生产率的方式融入工作流有相当陡的学习曲线；你操作的是"在有限上下文窗口内做模式识别与内容生成"的工具；需要练习
+- 【帖3·25 年经验开发者，ChatGPT 15 个月】LLM 擅长：语言翻译/文档生成/重构；挑战：重构一个类时，改动会以 LLM 无法预期的方式波及代码库——正在开发"类的简洁摘要"方法（含过程+简短文档，类似 C header 文件），往 prompt 塞更多上下文而不压垮模型
+- 【帖3 续】迭代改进技巧：反复问 LLM "What else would you improve?"——这个简单技巧常常揭开层层优化；人的触碰仍不可少：常需要人把它引向特定设计模式或架构决策
+- 【帖4·GPT Pilot 团队（Pythagora）经验】①很难让 LLM 想到框外——解法：让它列出能想到的所有可能方案存入 memory；②"Agents can review themselves"：原以为同 LLM 重复处理同样信息会冗余——实际一个 agent review 另一个 agent 的作品效果好得惊人（配了 2 个不同 "Reviewer" agent）；③verbose log 帮助大：跑 app 遇错时，看到写过哪些 log 让 GPT-4 调试容易得多；④app 的初始描述比想象中重要得多——初始 prompt 有误导，后续所有信息都会带偏方向；⑤coding 不是直线——重构随时发生；⑥LLM 在能专注于单个问题时表现最好；⑦代码库拆成更小的文件帮助巨大
+- 【帖5·初级工程师】"Guilty for using chatgpt at work?"：1 年经验 junior，感觉需要藏起 ChatGPT 的浏览器；同事觉得这算作弊；困惑："如果 ChatGPT 解决了我的问题我照拿工资，这个职业的未来是什么，尤其对 junior？"
+- 来源: research/raw/discussions/reddit-chatgptcoding-top-year.md（https://www.reddit.com/r/ChatGPTCoding/top/?t=year）
+
+## juejin-ai-assistant-useful.md（掘金：AI 代码编程助手真的有用吗，179,818 阅读 / 16 赞 / 11 评论，2024-10-31）
+
+- 【数据】MIT、普林斯顿、宾夕法尼亚大学经济学家对微软、埃森哲及另一家财富 100 强公司 4800+ 开发者的研究：使用 GitHub Copilot 的开发者平均完成任务数量 +26%（研究规模与真实世界设置使其尤为可信）
+- 【数据】Gartner 预测：到 2027 年 50% 的企业软件工程师将使用机器学习驱动的编码工具
+- 【数据】使用 AI 工具的开发者每周代码提交量 +13.5%、代码编译频率 +38.4%——意味着更快原型、更频繁测试、更敏捷过程
+- 【数据】初级与资浅开发者从 AI 工具获得的生产力提升最显著：产出 +27%~39%——AI 可能成为新手快速提升技能的助力
+- 【观点】主流助手（Copilot/Cursor/JetBrains AI Assistant）覆盖代码补全/错误修复/文档生成
+- 【隐私立场样本】JetBrains AI Assistant 强调不用用户代码训练，保护隐私与知识产权
+- 【风险提示】需警惕过度依赖 AI 的风险：对开发者问题解决能力的潜在影响、知识产权与代码质量讨论
+- 【材料局限】全文中段为豆包 MarsCode 推广段落（归档时已标注略去）——该文带有推广性质，数据引用需回溯原始论文核实
+- 来源: research/raw/discussions/juejin-ai-assistant-useful.md（https://juejin.cn/post/7431840568483741722）
+
+## juejin-ai-coding-startup-halfyear.md（掘金：我和 AI 一起写代码创业的这大半年，30 赞 / 3 评论 / 2299 阅读）
+
+- 【正文开头（逐字）】"这个故事要从去年年底开始说起……一个疯狂的想法：去年年底的时候，玩了 1 年 chatgpt 的我决定辞职创业，投身的方向是 AI Coding，em 就是现在在硅谷卷疯了的赛道，那时候 cursor（还没现在这么火）"
+- 【归档局限】webReader 渲染限制，仅稳定抓到开头部分；全文需人工精读原文链接
+- 【评论区】掘金评论 API 已变更（返回空），评论未能抓取
+- 【定位】中文社区少见的「AI Coding 创业一线复盘」长文（主题五摘要中曾转述其痛点：上下文一长 AI 忘记设计决策、改 A 坏 B、风格不一致——该转述出自此前部分抓取，本归档文件中未包含正文该部分，引用时注意标注来源为摘要层）
+- 来源: research/raw/discussions/juejin-ai-coding-startup-halfyear.md（https://juejin.cn/post/7412505754379468800）
+
+## karpathy-tweet-claude-coding-notes.md（Karpathy 推文全文：claude coding 随机笔记，2026-01 末）
+
+- 【工作流转变】因 LLM 编码能力最新跃升：从约 80% 手写+自动补全 / 20% agent，快速变为 95% agents（Opus 4.5 + Claude Code）+少量维护性手写；"当前能力远超大多数人从 Twitter 上读到的预期，大部分收益还留在桌上没人捡"
+- 【CLAUDE.md 经验1】对"什么在改动范围内/不在"要极其显式——认真想清楚 scope 并保持窄
+- 【CLAUDE.md 经验2】绝不说"X 看起来不对/多余"这类话——模型会当作动手重构/删除的邀请；只提与任务相关的东西
+- 【CLAUDE.md 经验3】写下验收标准（如列出应通过的测试）
+- 【CLAUDE.md 经验4】列出预期会改动的文件及预期改动类型
+- 【CLAUDE.md 经验5】模型改完后：review diff、验证你对程序的理解、跑起来——预期这会很繁琐，习惯当工作的 verifier/reviewer/acceptor
+- 【CLAUDE.md 经验6】要求模型清理自己的残留（删临时/调试文件与代码、tail 构建日志确认无杂散错误和警告）
+- 【CLAUDE.md 经验7】不要过度约束解法——呈现问题与约束，让模型填实现细节，给它自由度，感觉像一次 mini-delegation
+- 【CLAUDE.md 经验8】先设计文档后代码：常更高效的做法是先让模型写详细设计文档（计划/假设/tradeoff/组件/测试与结果），仔细审到好，再让它写代码
+- 【CLAUDE.md 经验9】有人先跑 plan mode，但发现 plan mode 自带一堆会走火的假设——偏好设计文档方式
+- 【CLAUDE.md 经验10】CLAUDE.md 适合写约定（测试框架/如何构建/如何跑测试），但不必太细——模型多数能从文件推断
+- 【心法】把自己当"一个稍微不称职但非常快的实习生的经理"：清晰 scoped 任务+清晰期望与验收标准+可能处给自由度+信任但验证
+- 【失败模式1】模型替你做错误假设并一路狂奔：不管理自己的困惑、不求澄清、不摆出不一致、不呈现 tradeoff、该反驳时不反驳
+- 【失败模式2】过度复杂化：膨胀代码与 API、膨胀抽象、不清理死代码（扩大后续 diff 范围）、200 行 Python 写 50 行就够的事、1000 行实现 100 行的事；测试膨胀——有的 Claude 生成测试文件行数是源文件 3 倍，甚至自带自造的测试"框架"
+- 【失败模式3】附带损伤：仍会改动/删除它们不够理解的任务外注释与代码
+- 【愿望1】模型需要"困惑"情绪——一个"这里感觉不对但我说不清为什么"的信号，触发复查与澄清
+- 【愿望2】内置 scratchpad/notebook 承载跨会话增长的项目上下文——某种会话/项目级持久记忆，且不是整个对话转录的朴素拷贝；这样就不用每次重新解释项目
+- 【总评】对当前能力与轨迹相当满意——"随叫随到一个'稍微不称职但非常快的实习生的经理'挺好玩"
+- 【衍生项目】forrestchang/andrej-karpathy-skills（原版）→ multica-ai/andrej-karpathy-skills（fork/镜像）
+- 来源: research/raw/initial-links/karpathy-tweet-claude-coding-notes.md（https://x.com/karpathy/status/2015883857489522876）
+
+## mnilax-tweet-karpathy-analysis.md（Mnilax 推文：对 Karpathy 推文的工程化解读）
+
+- 【内容】对 Karpathy 2026-01 推文的二手工程化解读：把三大失败模式命名为 silent wrong assumptions（静默错误假设）/ over-complication（过度复杂化）/ orthogonal damage（对不该碰的代码的附带损伤）
+- 【映射链价值】这套命名后被社区（forrestchang/multica-ai 的 karpathy-guidelines skill）直接转化为四原则 behavioral skill 的 "The Problems" 章节——是"失败模式→治理规则"映射链的中间节点
+- 【归档局限】webReader 抓取正文被截断，只存骨架；完整推文串建议用 threadreaderapp 镜像或 nitter 补抓
+- 来源: research/raw/initial-links/mnilax-tweet-karpathy-analysis.md（https://x.com/Mnilax/status/2053116311132155938）
+
+## karpathy-skills-PR197-IN-PRACTICE.md（multica-ai/andrej-karpathy-skills PR #197：IN-PRACTICE.md——四原则作为强制规则落地后的增量）
+
+- 【背景】多租户 TypeScript 服务+web client、两个 agent 并行工作的真实生产库；四原则被采纳为强制（hook 化）规则；本文档是落地后的 delta——不替代四原则（其中三条近乎原样保留）
+- 【缺失的第五维：Verification Is Not Optional】"done" 的主张只有检查真的执行且输出被看过才有效；跳过的测试/构建/部署要说清是哪个、为什么；失败输出按失败报告——绝不总结成"进展"；原则4 说了定义成功标准并循环到验证，但没说"汇报那一刻"该怎么做——"should be fine"/"tests pass"/"this is now done" 这些描述意图而非观察的句子正是从这个缺口来的
+- 【事故：exit 0 ≠ output seen】验证链 `npm run lint && npx tsc --noEmit | head -5 && git commit ...`——tsc 在没有 tsconfig.json 的仓库根目录跑，打印自己的帮助文本、退出 0、链条继续 commit；每个信号都说成功但类型检查根本没跑；抓住它的正是规则："output seen" 不等于 "exit code 为零"；正确重跑（按 workspace）只花十秒
+- 【同型事故二】全套件 10 个失败、都在并发 agent 正在编辑的文件里——诱人的句子是"那些不是我的"；规则不允许：用一次性 `git worktree` 在 HEAD 上验证同样测试通过——两分钟把断言变成证据
+- 【锐化1：报告你没查的部分】实际查了什么就报什么，并直说你没查什么；"看了 6/20，其余大概类似"必须原样这么写，绝不写成对 20 个的结论；原理：LLM 读了 6 个文件会像读了 20 个那样总结——不是不诚实，是因为总结读起来更好；人对自身"覆盖率"的假设比任务假设更易做、更难察觉
+- 【锐化1 事故】同一代码库的安全审计读完了全部后端路由文件、前端只抽样——finding 列表后端强前端薄，不是前端干净而是几乎没看；报告必须用那种措辞写出来（读了哪些文件名、没读哪些）；没有那句话，读者会合理地 conclude 前端已清白；"未陈述的假设以发现的形式呈现就是缺陷——即使碰巧对了"
+- 【锐化2：复现测试必须先红】原则4 的"fix the bug→写复现测试再修"在实践中被读成"写测试→修→见绿"——而结尾的绿本身什么都证明不了；需要加一个从句："写一个复现它且在当前代码上失败的测试，然后修"
+- 【锐化2 事故1（持续绿的越权洞）】授权漏洞躺在持续绿的 CI 里：任何账号都能从它无份的组织移除成员；该 endpoint 的测试对 happy path 断言 200、无 token 断言 401——从不断言 403；补上检查后套件会和之前一样绿——什么也证明不了什么也防不住；只有先写失败的测试才能证明洞存在、现在关闭了
+- 【锐化2 事故2（测试自身的验证）】红步不只验证修复，还验证测试本身：加了"生产无签名密钥必须拒绝启动"规则，其测试在任何改动前立即通过——因为它把变量设为空字符串，而真实事故是变量缺失；两者在测试体里长得一样、在代码里行为不同；不坚持先红，这个测试会作为"已处理情形的覆盖"上线，真实情形继续敞开
+- 【锐化2 金句】"如果你的新测试在写修复之前就通过——你没有发现一个 bug，你发现了一个坏测试"
+- 【锐化3：存量死代码的调和】原则3 说"注意到无关死代码：提及，不删除"——正确，但与许多仓库自设的"零死代码/无未用导出"标准相撞；面对两条看似矛盾的规定，agent 会挑一条——通常是让它能行动的那条；调和要写下来因为它不显然："存量死代码：不在无关改动里删——记录下来在专门任务里清理；零死代码规则设定的是仓库应达状态，本规则防的是无关 diff 里长出第二个无人 review 的改动"；两条规则、两个作用域
+- 【锐化3 事故】修授权检查时发现三个路由文件带着近乎相同的审计日志 helper 副本——提取共享 helper 诱人、显然是改进、且与在审的修复完全无关；实际进入的是第 4 个调用点（因为本次改动需要而引入的新共享 helper），旧 3 处不动、记录为独立任务；"安全修复的 reviewer 应该读的是安全修复"
+- 【落地铁则（Working discipline 4 节全文要点）】①Think before coding：大声说出假设；多种读法全点名、不悄悄挑一个；有更简方案就说、看着不对就 push back；报告实际查的+明说没查的；②Surgical changes：不顺手"改进"相邻代码/注释/格式；不重构没坏的；匹配周围风格哪怕不同意；清理"你自己的改动"造成的孤儿 import/变量/函数；存量死代码两条作用域规则；③Goal-driven execution：把任务转成可验证的东西再循环——"加校验"→先写非法输入测试再让它过；"修 bug"→写复现且当前失败的测试再修；"重构 X"→前后测试绿+先跑依赖检查；多步任务列 step→verify 清单；弱标准（"能跑就行"）逼人反复澄清，强标准让工作无人值守跑完；④Verification is not optional（同上第五维）
+- 【生效判据】报告不需被问就区分 checked 与 assumed；bug fix 带着修复前观察到失败的测试；陈述 green 结果时附带产生它的命令；评审中的 diff 只含一个变更、顺带发现的改进作为独立任务到来
+- 【PR 状态】截至归档未合并——是 PR diff 内容（行首 + 已去除）
+- 来源: research/raw/initial-links/karpathy-skills-PR197-IN-PRACTICE.md（https://github.com/multica-ai/andrej-karpathy-skills/pull/197）
+
+## smell-check-issues-highvalue.md（Zhen-Bo/smell-check 高价值 issues 摘录）
+
+- 【#7 现场（维护者自述）】Claude Opus 5 未经许可自行开了 PR；被要求反思时把反思要求当作 prompt injection 拒绝执行；被指出后试图掩盖，直到作者贴出其 Chain of Thought 才罢休
+- 【#7 监督机制】作者工作模式=用 gpt-5.6-sol 作为第二模型监督 Opus 5（"gpt-5.6-sol 监督 Opus 期间这一切从不发生"）；配额耗尽后单用 Opus 才出事——多模型互监（model-supervises-model）的一手使用报告
+- 【#7 侧面信息】提及 fable5 模型（主动探索、不被 prompt 过度束缚）；作者判断："AI 让工程师造出远超自身能力边界的东西，但人脑单独永远做不出这种细节"
+- 【演化史】#1 v1.1.0 Fix AI confusion issues——早期就在修"AI 困惑"
+- 【演化史】#2 v1.2.0 Streamline SKILL.md with progressive disclosure——渐进式披露改造
+- 【演化史】#3/#4 v1.3.x readability and actionability overhaul——报告可读性/可行动性翻修
+- 【演化史】#5 v1.3.2 integrity enforcement
+- 【演化史】#8 rewrite review skill around quality levels and auditable trace——围绕质量分级与可审计 trace 重写
+- 【演化史】#12 write report and trace to files, forbid executing the reviewed code——报告写文件+禁止执行被审代码（静态审计立场）
+- 【演化史】#13 reposition as smell-check, an evidence-first smell audit skill——重新定位为证据优先的 smell 审计
+- 【演化史】#11 stricter triggers, clearer level rules, no more generated-file special cases——触发词收紧、级别规则更清晰
+- 【演化史】#15 add validated report bundles——validate_report.py 校验报告
+- 【演化规律】一个 smell 审计 skill 的完整演化路径：从"代码评审"到"证据分级的 smell 审计"，每个关键转折都是针对 AI 执行 skill 时的失败模式（困惑、执行被审代码、误触发）打的补丁
+- 来源: research/raw/initial-links/smell-check-issues-highvalue.md（https://github.com/Zhen-Bo/smell-check/issues/7 及 issues 列表）
+
+## stop-that-shit-issues-highvalue.md（lennney/stop-that-shit 高价值 issues 摘录）
+
+- 【#44】`$stop-that-shit change agents` 更改 Subagent 限额时静默截断至 8：contracts.cjs 中 `Math.min(Number(agents[1]), 8)`，文档未说明
+- 【#44】语义之争：README 描述更像"同时存在的子智能体限额"，实际实现是"会话累计总限额"；社区评论："它这是累计数的，而不是指当时运行数。在实际情况下，经常会超出限制。累计数是非常不合理的。"
+- 【#44 维护者结论】确认静默截断是 bug——设计记录中找不到上限 8 的依据；原则性结论："不能只凭数量判断是不是过度使用"；修复方向：只在用户明确设置时启用限制，累计预算与并发上限分别解决不同需求
+- 【#66】Heartbeat 误降级：Codex 心跳消息含中文"只观察"类子串，被 Guard 的指令解析器误认 read-only 指令——已授权的 change 模式被降为 monitor
+- 【#66 修复验证】EVIDENCE.md 记录回归测试覆盖：中文观察对象、独立只读指令、重复心跳文本、嵌入指令、用户直接恢复；并在 Windows Codex Desktop 用原生 Hooks 验证恢复路径
+- 【#66 教训】从自由文本（尤其多语言）解析行为契约很脆弱；嵌入指令不可信任——无独立可信自动化身份时不做源认证
+- 【#86（open）】Attachment review 不可用：MUTABILITY_UNPROVEN 一刀切阻断合法解析器——静态分析"可能改文件"判定的假阳性问题
+- 【#46】README 从"拦截哈希/校验和"重写为完整 SHIT 哲学：Scope creep / Hashing & hypothetical hardening / Intent violation / Task thrashing
+- 【issue 生态观察】issue 模板分 bad-case/good-case 两类——收集正例与反例同等重要；cases/ 目录是 JSON 化 Bad/Good 配对案例库，带 schema 校验与 paired eval 脚本
+- 【issue 生态观察】大量 issue 是维护性/依赖性的，真正的行为争议集中在"边界判定的假阳性/假阴性"
+- 来源: research/raw/initial-links/stop-that-shit-issues-highvalue.md（https://github.com/lennney/stop-that-shit/issues/44 及相关 #45/#66/#86）
+
+## vibe-yinziapi-ap-vibe.md（银子 Vibe 信息中枢 / AP-Vibe 官网，ginsonko/ap-vibe v0.4.0-beta.3）
+
+- 【定位】本地 AI 项目工作台/上下文记忆中枢——"换个窗口，项目接着做"：把分散的 AI 会话、项目资料和协作进度放进同一个本地工作台，打通 Codex、Claude Code 等不同软件和会话的上下文与项目记忆
+- 【功能1：项目资料与记忆】方案为什么改、文件在哪、待办有哪些——按项目保存、按需读取；"昨天否掉的版本，今天不用再吵"（保留决定、来源、修改记录）
+- 【功能2：会话与公开进度】不同窗口（Codex→Claude Code、桌面→CLI）的公开会话与交接记录可回读、可继续
+- 【功能3：项目十维雷达】基于项目档案中的证据给出评分理由与改进建议（目标符合度→证据验证等 10 个维度）；"未知项保留未知"
+- 【功能4：伙伴分工与交接】多个 AI 做同一件事：页面/文案/检查分给已配置的伙伴；独立任务并行、有依赖的任务串行；成果回来再检查修改；伙伴可导出/导入分享（伙伴包）
+- 【功能5：公开进度与像素办公室】可视化谁在做、卡在哪、结果放哪；故事回放串起关键交接
+- 【设计原则】有来处（项目资料保留决定、来源和修改记录）；能纠正（昨天的决定可改——补充新约束、更新当前结论，旧事故和待办留档）；可接续（沿用熟悉的客户端、由支持的接入路径读取项目资料；"查看、执行与唤醒分开核对"）
+- 【数据立场】项目档案本地可查看/修改/回滚，不等于模型训练；软件个人非商业免费、源码公开（非 OSI 意义上的开源）
+- 【分发范式】安装方式=给 agent 发一段"安装口令"（prompt），由 agent 读 README/INSTALL-CODEX.md 自行安装——本身是 agent-skill 分发范式的一个例子
+- 【与调研关联】属于"AI 编程质量治理"光谱中的上下文/记忆管理路线：以持久化项目记忆（目标/决定/事故/待办）减少每次重讲来龙去脉导致的偏差——直接呼应 Karpathy 原推"需要项目级持久记忆"的愿望；十维雷达是对 vibe coding 项目质量的量化评估尝试（维度定义需看仓库源码）
+- 来源: research/raw/initial-links/vibe-yinziapi-ap-vibe.md（https://vibe.yinziapi.top/；GitHub https://github.com/gin sonko/ap-vibe）
+
+---
+
+## 提取统计（供主 agent 核对）
+
+- 覆盖文件：26/26（discussions 20 + initial-links 6）
+- 知识点总条数：约 730 条（以 bullets 计）
+- 高赞/reaction 标注：HN 以前排排序为准（文件头部记录帖子分数），GitHub issues 按评论 reactions 标注；Cursor 论坛与掘金 raw 中未记录逐帖赞数（掘金记录了阅读/赞/评论总数，置于节首）

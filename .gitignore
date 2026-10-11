@@ -1,0 +1,14 @@
+# 调研原始下载（第三方内容，仅本地留档，不入库）
+research/raw/
+
+# Node / Python 运行产物
+node_modules/
+__pycache__/
+*.pyc
+
+# 打包产物
+*.tgz
+
+# 系统文件
+.DS_Store
+Thumbs.db

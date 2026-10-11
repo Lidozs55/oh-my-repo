@@ -1,0 +1,37 @@
+{
+  "name": "vibe-quality",
+  "version": "1.0.0",
+  "description": "治理 AI 生成代码与低质量代码的中文 Agent Skill：代码体检、独立评审、行为保持重构、质量工作流与护栏，附零依赖扫描脚本。",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "skill",
+    "SKILL.md",
+    "claude",
+    "claude-code",
+    "vibe-coding",
+    "code-quality",
+    "code-review",
+    "refactoring",
+    "clean-code",
+    "ai-generated-code",
+    "代码质量",
+    "代码评审"
+  ],
+  "files": [
+    "SKILL.md",
+    "references/",
+    "scripts/",
+    "bin/"
+  ],
+  "bin": {
+    "vibe-quality": "bin/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "python scripts/selftest.py",
+    "prepublishOnly": "npm test"
+  }
+}

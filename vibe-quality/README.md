@@ -43,7 +43,7 @@ npx vibe-quality --dir /path/to/skills
 npx skills add https://registry.npmjs.org/vibe-quality/-/vibe-quality-1.0.0.tgz
 
 # 或从 GitHub 仓库安装（若已推送）
-npx skills add <owner>/<repo> --skill vibe-quality
+npx skills add Lidozs55/oh-my-repo --skill vibe-quality
 ```
 
 方式三，手动复制：把整个 `vibe-quality/` 目录复制到任一位置（目录名不可改，须与 frontmatter `name` 一致）：

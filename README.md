@@ -1,6 +1,6 @@
 # oh-my-repo
 
-vibe-coding 调研工作区：大规模调研档案 + 从调研中从零构建的中文代码质量 Skill [vibe-quality](https://www.npmjs.com/package/vibe-quality)。
+vibe-coding 调研工作区：大规模调研档案 + 从调研中从零构建的中文代码质量 Skill [vibe-quality](vibe-quality/README.md)（[npm](https://www.npmjs.com/package/vibe-quality)）。
 
 ## 目录结构
 
